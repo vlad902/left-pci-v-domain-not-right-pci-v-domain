@@ -1,0 +1,5 @@
+import Solution
+
+#print axioms LeftPCI.exists_isLeftPCIRing_not_isRightPCIRing
+#print axioms LeftPCI.not_forall_isLeftPCIRing_imp_isRightPCIRing
+#print axioms LeftPCI.not_forall_isLeftVRing_imp_isRightVRing

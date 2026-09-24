@@ -1,0 +1,343 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# formalization.yaml v0.4 (mathlib-initiative format, Palomar registry rules).
+version: "v0.4"
+
+project:
+  name: "A left PCI left V-domain that is not right PCI and not a right V-domain"
+  description: >-
+    A countable domain R that is a left PCI ring (every cyclic left module not
+    isomorphic to R is injective) and a left V-ring (every simple left module is
+    injective), but is not right Ore, not a right PCI ring and not a right
+    V-ring. Consequently the opposite ring of R is a right PCI ring that is not
+    left PCI.
+
+    This answers in the negative the question of Faith (1973), Cozzens and
+    Faith (Simple Noetherian Rings, 1975) and Damiano (1979) whether every right
+    PCI ring is left PCI, and the question, going back to Cozzens and Faith
+    (1975), whether a left V-domain must be a right V-domain.
+
+    The ring is an Ore extension K[t; σ, δ] over a free field K (Cohn's universal
+    field of fractions of a free algebra over the rationals) with a non-surjective
+    endomorphism σ, built by iteratively adjoining free solutions of the
+    pseudo-linear equations that govern divisibility of the cyclic modules
+    R/Rf.
+    
+    The mathematics, the accompanying paper and the Lean code were produced by AI
+    models (Anthropic's Claude) at a human's direction; no human expert has checked
+    the mathematics.
+  authors:
+    - "Vlad Tsyrklevich"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Vlad Tsyrklevich"
+
+classification:
+  arxiv: ["math.RA"]
+  msc2020: ["16D50", "16S36", "16K40", "16S10"]
+
+sources:
+  - title: "A left PCI, left V-domain that is not right Ore, not right PCI and not right V (a right PCI ring that is not left PCI)"
+    type: original-proof
+    relationship: other
+    note: >-
+      This repository is the first presentation of the result. The construction
+      was found on 2026-09-23 by Claude Fable 5.1 (Anthropic) in Claude Code at
+      the direction of the repository's maintainer, following the strategy
+      proposed by Cozzens and Faith (1975, §7); it was later simplified and
+      written up (see the paper source below). The questions it answers are
+      recorded as open in the cited literature: Jain–Lam–Leroy (2009, §1),
+      Jain–Srivastava (2009 survey preprint, §2) and Behboodi–Daneshvar–Vedadi
+      (2018, Remark 2.8). A Claude Opus agent with web access searched zbMATH,
+      OpenAlex, Semantic Scholar, Google Scholar, arXiv, CrossRef and
+      MathOverflow and found no published resolution of these questions and no
+      contradicting positive result; this is not a proof of novelty, and no
+      human expert has assessed it.
+  - title: "PCI rings and V-domains are not left-right symmetric"
+    type: paper
+    id: "paper/pci_counterexample.tex"
+    location: "paper/pci_counterexample.tex and paper/pci_counterexample.pdf in this repository"
+    relationship: other
+    note: >-
+      The accompanying informal write-up, included in this repository snapshot.
+      The Lean development follows its Sections 2–5 and cites its numbering
+      (Theorem 1.1, Proposition 2.2, Lemma 2.4, Theorem 2.5, Proposition 3.6,
+      Remark 5.2, Corollary 5.3). No human has reviewed it. It has not been
+      published elsewhere.
+    license: "Apache-2.0 (part of this repository)"
+    author_endorsement: "n/a"
+  - title: "Simple Noetherian Rings"
+    authors:
+      - "J. H. Cozzens"
+      - "C. Faith"
+    type: book
+    location: "Cambridge Tracts in Mathematics 69, Cambridge University Press, 1975"
+    id: "https://doi.org/10.1017/CBO9780511565700"
+    relationship: background
+    note: >-
+      Asks (§7 (10)) for a right Noetherian right V-(PCI-)domain that is not a
+      left V-(PCI-)domain, the origin of the V-domain question, and (§7 (7))
+      for a right V-domain that is not left Ore, and proposes looking among Ore
+      extensions K[t; σ, δ] with σ not onto; 6.17 (a right PCI domain is right
+      Ore) and 6.25–6.26 are cited.
+  - title: "When are proper cyclics injective?"
+    authors:
+      - "C. Faith"
+    type: paper
+    location: "Pacific J. Math. 45 (1973), 97–112"
+    id: "https://doi.org/10.2140/pjm.1973.45.97"
+    relationship: background
+    note: >-
+      Introduces PCI rings; a right PCI ring is semisimple Artinian or a simple
+      right semihereditary right Ore domain. Theorem 22 (a left Ore right
+      Noetherian right PCI ring is left Noetherian, hence left PCI by Boyle's
+      theorem) and the question whether a right Noetherian right PCI ring is
+      left Ore.
+  - title: "A right PCI ring is right Noetherian"
+    authors:
+      - "R. F. Damiano"
+    type: paper
+    location: "Proc. Amer. Math. Soc. 77 (1979), 11–14"
+    id: "https://doi.org/10.1090/S0002-9939-1979-0539620-1"
+    relationship: background
+    note: >-
+      Theorem 1 (a right PCI ring is right Noetherian), used in the proof of the
+      Main Theorem for the properties of the opposite ring; the paper also
+      restates the question whether a right PCI ring is left PCI, cited in
+      Corollary 5.3 (1).
+  - title: "Ore extensions and V-domains"
+    authors:
+      - "S. K. Jain"
+      - "T. Y. Lam"
+      - "A. Leroy"
+    type: paper
+    location: "Rings, Modules and Representations, Contemp. Math. 480, Amer. Math. Soc., 2009, 249–262"
+    id: "https://doi.org/10.1090/conm/480/09378"
+    relationship: background
+    note: >-
+      Theorem 3.2 (criterion R = Rf + gR for Ore extensions to be left V / left
+      PCI), Proposition 6.1 and Theorem 6.2; §1 restates the V-domain question
+      as open, and Remark 6.3 notes that no left V-domain K[t; σ, δ] with σ not
+      onto was known.
+  - title: "Rings over which certain modules are injective"
+    authors:
+      - "A. K. Boyle"
+      - "K. R. Goodearl"
+    type: paper
+    location: "Pacific J. Math. 58 (1975), 43–53"
+    id: "https://doi.org/10.2140/pjm.1975.58.43"
+    relationship: background
+    note: >-
+      §2 poses the left-right symmetry question for PCI domains (and QI-rings);
+      it treats V-rings as already known not to be symmetric and does not
+      discuss V-domains.
+  - title: "Several generalizations of the Wedderburn–Artin theorem with applications"
+    authors:
+      - "M. Behboodi"
+      - "A. Daneshvar"
+      - "M. R. Vedadi"
+    type: paper
+    location: "Algebr. Represent. Theory 21 (2018), no. 6, 1333–1342"
+    id: "https://doi.org/10.1007/s10468-017-9748-2"
+    relationship: background
+    note: >-
+      Remark 2.8 restates the V-domain question as open.
+  - title: "Rings determined by the properties of cyclic modules and duals: A survey-I"
+    authors:
+      - "S. K. Jain"
+      - "A. K. Srivastava"
+    type: paper
+    location: "Survey preprint, 2009"
+    id: "https://leroy.perso.math.cnrs.fr/Talks/Jain.pdf"
+    relationship: background
+    note: >-
+      §2: "the question of left-right symmetry of PCI domains is still
+      open."
+  - title: "Skew Fields: Theory of General Division Rings"
+    authors:
+      - "P. M. Cohn"
+    type: book
+    location: "Encyclopedia of Mathematics and its Applications 57, Cambridge University Press, 1995"
+    id: "https://doi.org/10.1017/CBO9781139087193"
+    relationship: background
+    note: >-
+      Universal fields of fractions of semifirs, full matrices and honest maps
+      (Chapter 4), and firs and free fields (§5.4); the source of Facts 3.1, which are proved in this
+      repository rather than assumed.
+  - title: "Free Ideal Rings and Localization in General Rings"
+    authors:
+      - "P. M. Cohn"
+    type: book
+    location: "New Mathematical Monographs 3, Cambridge University Press, 2006"
+    id: "https://doi.org/10.1017/CBO9780511542794"
+    relationship: background
+    note: >-
+      The weak algorithm and firs (Chapter 2), universal localization and the
+      display construction (Chapter 7), followed by the Lean proofs of Facts 3.1
+      in LeftPCI.FreeAlgebra and LeftPCI.FreeField.
+  - title: "A construction of simple principal right ideal domains"
+    authors:
+      - "P. M. Cohn"
+    type: paper
+    location: "Proc. Amer. Math. Soc. 66 (1977), 217–222"
+    id: "https://doi.org/10.1090/S0002-9939-1977-0453805-2"
+    relationship: background
+    note: "The free-field device for extending an endomorphism and a derivation from generators (§5), used in Proposition 3.6."
+  - title: "A countable self-injective ring is quasi-Frobenius"
+    authors:
+      - "J. Lawrence"
+    type: paper
+    location: "Proc. Amer. Math. Soc. 65 (1977), 217–220"
+    id: "https://doi.org/10.1090/S0002-9939-1977-0442025-3"
+    relationship: background
+    note: >-
+      Theorem 4, whose idea (extending maps from a direct sum of cyclic right
+      ideals against a cardinality bound) is behind Lemma 2.4 (no non-zero
+      countable injective modules over a countable non-Ore domain).
+  - title: "Homological properties of the ring of differential polynomials"
+    authors:
+      - "J. H. Cozzens"
+    type: paper
+    location: "Bull. Amer. Math. Soc. 76 (1970), 75–79"
+    id: "https://doi.org/10.1090/S0002-9904-1970-12370-9"
+    relationship: background
+    note: "The first examples of (two-sided) PCI domains: principal right and left ideal V-domains."
+  - title: "Hereditary QI-rings"
+    authors:
+      - "A. K. Boyle"
+    type: paper
+    location: "Trans. Amer. Math. Soc. 192 (1974), 115–120"
+    id: "https://doi.org/10.1090/S0002-9947-1974-0338075-X"
+    relationship: background
+    note: "Used by Faith and by Cozzens and Faith to show that a left Ore right Noetherian right PCI domain is left PCI."
+
+related_formalizations: []
+
+status:
+  scope: >-
+    Fully formalized. The final theorems in Challenge.lean are:
+    LeftPCI.exists_isLeftPCIRing_not_isRightPCIRing (the Main
+    Theorem's example: a countable domain that is left PCI and left V but not
+    right Ore, not right PCI and not right V),
+    LeftPCI.not_forall_isLeftPCIRing_imp_isRightPCIRing (a left PCI ring need
+    not be right PCI; equivalently, via the opposite ring, a right PCI ring
+    need not be left PCI), and
+    LeftPCI.not_forall_isLeftVRing_imp_isRightVRing (a left V-domain need not
+    be right V),
+    are proved in the library LeftPCI and checked by Comparator.
+    Not among the compared statements: the Main Theorem's further claims that
+    the ring is simple, a principal left ideal domain, left Noetherian and left
+    hereditary; and Corollary 5.3 (2) and (4) as separate statements (they are
+    visible in the Main Theorem's statement and in the construction).
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+
+automation:
+  methods:
+    - method: agent
+      models:
+        - "Claude Fable 5.1 (Anthropic, claude-fable-5-1)"
+        - "Claude Opus 5.5 (Anthropic, claude-opus-5-5)"
+      framework: "Claude Code (Anthropic), with the lean-lsp MCP server"
+      tool_setup: >-
+        Claude Fable 5.1 did the mathematics, wrote the paper and all briefs,
+        and orchestrated; Claude Opus 5.5 subagents did the Lean formalization,
+        the literature and DOI checking, and this metadata. Originally, the
+        construction was found (an iterated closure over free fields, following
+        the strategy proposed by Cozzens and Faith) and first formalized in Lean
+        in the maintainer's private project, by an earlier, more complicated
+        route through free K-rings and a direct limit of fields; none of that
+        code is in this repository. The construction was simplified, the paper
+        paper/pci_counterexample.tex was written from scratch, the paper was
+        formalized section by section (Sections 2–5), and the development was
+        ported into this standalone repository.
+      cost:
+        wall_time: >-
+          about 4 hours of Claude Code session time.
+        spend_usd: "not tracked (subscription usage; no per-token billing)"
+        hardware: >-
+          Token usage, approximate and measured from the local transcripts:
+          Claude Fable 5.1 about 1.0 M output tokens and 106 M cached-input
+          tokens (about 220 turns); Claude Opus 5.5 about 104 M cached-input
+          tokens across one session and 28 subagent runs, whose output tokens
+          were not recorded.
+      prompting_notes: >-
+        The repository's maintainer, a human, directed the work through prompts (find the
+        construction, simplify it, write the paper, formalize it, package it for
+        Palomar); the models wrote all mathematics, prose and Lean code.
+  spend_usd: "not tracked (subscription usage; no per-token billing)"
+  notes: >-
+    All mathematics, the paper, the Lean development and this metadata were
+    produced in Claude Code by Claude Fable 5.1 and Claude Opus 5.5 subagents
+    (Anthropic), at the direction of the repository's maintainer, a human who
+    wrote no mathematics or Lean, is the repository's responsible maintainer,
+    and reviewed Challenge.lean only.
+
+fidelity:
+  divergences: >-
+    Right-handed notions are formalized through the opposite ring: IsRightPCIRing
+    R is IsLeftPCIRing Rᵐᵒᵖ and IsRightVRing R is IsLeftVRing Rᵐᵒᵖ, the standard
+    Mathlib idiom. A proper cyclic left module is taken as a quotient R ⧸ I by a
+    left ideal that is not isomorphic to R; since every cyclic module is such a
+    quotient and injectivity is invariant under isomorphism, this is the usual
+    notion. IsLeftVRing quantifies over simple modules in the same universe as
+    R. IsRightOre states that any two non-zero elements have a non-zero common
+    right multiple. The compared statements live in universe Type. The paper
+    works over an arbitrary countable commutative field k; the formalization
+    takes k = ℚ, which suffices for the compared statements. Not compared: the
+    Main Theorem's claims that the ring is simple, a principal left ideal
+    domain, left Noetherian and left hereditary. Proposition 2.2 is formalized
+    through the Baer-criterion argument given after it (solving for every
+    right-hand side) rather than via Jain–Lam–Leroy Theorem 3.2. "Not right PCI"
+    is derived via Lemma 2.6 and Lemma 2.4 (countability) rather than via
+    Cozzens–Faith 6.17; Lemma 2.4 is proved on the left and applied to Rᵐᵒᵖ.
+    The tower of Construction 5.1 is formalized in the fixed-symbol variant of
+    Remark 5.2, as the paper describes. Cohn's Facts 3.1 are proved in the
+    repository (LeftPCI.FreeAlgebra, LeftPCI.FreeField), not assumed; the Ore
+    extension K[t; σ, δ] is built in the repository (LeftPCI.OrePoly), since
+    Mathlib has only the case δ = 0. Of Corollary 5.3, items (1) and (3) are
+    compared theorems; item (1) is stated for the Main Theorem's ring itself (a
+    left PCI ring need not be right PCI), the paper's statement about the
+    opposite ring read through Rᵐᵒᵖ, so both compared corollaries use the same
+    ring; items (2) (not left Ore) and (4) (an Ore extension that
+    is a left V-domain with σ not onto) are not stated separately in Lean: (2)
+    is visible in the Main Theorem's statement (¬ IsRightOre R, for the
+    opposite ring), and (4) in the construction, since the compared
+    existential does not record that the witness is an Ore extension.
+
+review:
+  status: >-
+    human review of the Challenge.lean, no human review of the mathematics, the
+    paper or the Lean
+  reviewers:
+    - "Vlad Tsyrklevich (Challenge.lean only)"
+  notes: >-
+    The maintainer reviewed the statement surface, Challenge.lean. Mathematical
+    review: none by a human; the mathematics, the paper and the Lean proofs have
+    been reviewed only by AI sessions.
+
+alignment:
+  namespace: "LeftPCI"
+  statements:
+    - source: "Main Theorem (Theorem 1.1) of paper/pci_counterexample.tex"
+      lean: "LeftPCI.exists_isLeftPCIRing_not_isRightPCIRing"
+      module: "Challenge"
+      status: "proved"
+      note: >-
+        The existence of a countable domain that is left PCI and left V but not
+        right Ore, not right PCI and not right V (parts (1) and (2) of the Main
+        Theorem, without simplicity, the principal-left-ideal property, left
+        Noetherianity and left heredity).
+    - source: "Corollary 5.3 (1) of paper/pci_counterexample.tex"
+      lean: "LeftPCI.not_forall_isLeftPCIRing_imp_isRightPCIRing"
+      module: "Challenge"
+      status: "proved"
+      note: >-
+        Stated for the Main Theorem's ring itself: a left PCI ring need not be
+        right PCI. The paper's Corollary 5.3 (1), that a right PCI ring need not
+        be left PCI, is the same statement for the opposite ring.
+    - source: "Corollary 5.3 (3) of paper/pci_counterexample.tex"
+      lean: "LeftPCI.not_forall_isLeftVRing_imp_isRightVRing"
+      module: "Challenge"
+      status: "proved"
+      note: "A left V-domain need not be a right V-domain; the witness is the Main Theorem's ring."

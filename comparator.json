@@ -1,0 +1,12 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "LeftPCI.exists_isLeftPCIRing_not_isRightPCIRing",
+    "LeftPCI.not_forall_isLeftPCIRing_imp_isRightPCIRing",
+    "LeftPCI.not_forall_isLeftVRing_imp_isRightVRing"
+  ],
+  "definition_names": [],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "enable_nanoda": true
+}
