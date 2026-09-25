@@ -5,12 +5,14 @@ public import LeftPCI.Counterexample.Defs
 /-!
 # PCI rings which are not division rings are V-rings; transport of the PCI property
 
-* `isLeftVRing_of_isLeftPCIRing`, `isRightVRing_of_isRightPCIRing`: **Lemma 2.6** of the paper
-  `paper/pci_counterexample.tex`. If `R` is not a division ring (some non-zero element is not a
+* `isLeftVRing_of_isLeftPCIRing`: if `R` is not a division ring (some non-zero element is not a
   unit), a left PCI ring is a left V-ring: a simple left module is `R ⧸ M` for a maximal left
   ideal `M`, and `R ⧸ M ≅ R` would make `R` simple as a left module over itself, i.e. a division
   ring (`isSimpleModule_self_iff_isUnit`); so `R ⧸ M` is a proper cyclic module, hence injective.
-  (The paper states Lemma 2.6 for domains; the argument does not use that `R` is a domain.)
+  This is the "`R` is left V" step in the proof of Proposition 2.2 of
+  `paper/pci_counterexample.tex` (there: the zero ideal is not maximal because `Rt` is
+  a non-zero proper left ideal), stated for an arbitrary ring; `Closure.lean` applies it to
+  `K[t; σ, δ]` with `t` as the non-unit.
 * `IsLeftPCIRing.of_ringEquiv`: the left PCI property is invariant under ring isomorphisms, and
   `isLeftPCIRing_iff_isRightPCIRing_op`: `R` is left PCI iff `Rᵐᵒᵖ` is right PCI (via
   `RingEquiv.opOp`).
@@ -22,8 +24,8 @@ universe u
 
 namespace LeftPCI
 
-/-- **Lemma 2.6** (left-handed): a left PCI ring which is not a division ring is a left
-V-ring. -/
+/-- **Left PCI ⟹ left V** (the last step of Proposition 2.2 of the paper, for any ring): a left
+PCI ring which is not a division ring is a left V-ring. -/
 theorem isLeftVRing_of_isLeftPCIRing (R : Type u) [Ring R] (hR : ∃ x : R, x ≠ 0 ∧ ¬ IsUnit x)
     (h : IsLeftPCIRing R) : IsLeftVRing R := by
   intro M _ _ hM
@@ -36,15 +38,6 @@ theorem isLeftVRing_of_isLeftPCIRing (R : Type u) [Ring R] (hR : ∃ x : R, x �
     exact hxu ((isSimpleModule_self_iff_isUnit.mp this).2 x hx0)
   have := h I hI
   exact (Module.Baer.of_equiv e.symm (Module.Baer.of_injective this)).injective
-
-/-- **Lemma 2.6** (right-handed): a right PCI ring which is not a division ring is a right
-V-ring. -/
-theorem isRightVRing_of_isRightPCIRing (R : Type u) [Ring R] (hR : ∃ x : R, x ≠ 0 ∧ ¬ IsUnit x)
-    (h : IsRightPCIRing R) : IsRightVRing R := by
-  obtain ⟨x, hx0, hxu⟩ := hR
-  refine isLeftVRing_of_isLeftPCIRing Rᵐᵒᵖ ⟨MulOpposite.op x, ?_, ?_⟩ h
-  · simpa using hx0
-  · rwa [isUnit_op]
 
 attribute [local instance] RingHomInvPair.of_ringEquiv RingHomInvPair.of_ringEquiv_symm in
 /-- The left PCI property is invariant under ring isomorphisms: `φ : R ≃+* S` carries `I : Ideal S`

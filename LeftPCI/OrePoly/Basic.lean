@@ -28,7 +28,8 @@ This is the general two-parameter Ore extension.  Its two degenerate cases are a
 * `σ = id` is the ring of differential polynomials `k[t; d]`.
 
 Neither covers the *simultaneous* twist-and-derivation case, which is what the rings
-`K[t; σ, δ]` of the paper `paper/pci_counterexample.tex` are, so it is carried out here.
+`K[t; σ, δ]` of the paper `paper/pci_counterexample.tex` are, so it is carried out
+here.
 
 ## Construction
 
@@ -122,7 +123,7 @@ def toAddMonoidHom (δ : OreDerivation k σ) : k →+ k := AddMonoidHom.mk' δ �
 /-- The **inner** `σ`-derivation attached to `c : k`, namely `a ↦ σ a * c - c * a`.
 
 By a lemma of Cohn, over a *commutative* `k` every `σ`-derivation is of this form unless `σ` is
-an inner automorphism (Cohn 1977, §2; cf. §6 of the paper). -/
+an inner automorphism (Cohn 1977, §2; cf. Remark 5.1 of the paper). -/
 def inner (σ : k →+* k) (c : k) : OreDerivation k σ where
   toFun a := σ a * c - c * a
   map_add' a b := by simp only [_root_.map_add]; noncomm_ring

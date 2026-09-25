@@ -36,23 +36,23 @@ Jain, Lam and Leroy showed that a left V-domain of this form is right PCI if and
 is onto. They also said they had no example of a left V-domain `K[t; σ, δ]` with `σ` not
 onto.
 
-The paper constructs such an example. It is a countable domain `R = K̃[t; σ̃, δ̃]` with the
+The paper constructs such an example. It is a countable domain `R = K[t; σ, δ]` with the
 following properties:
 
-- `K̃` is a free field: Cohn's universal field of fractions of a free algebra over `ℚ`.
-- `σ̃` is an endomorphism of `K̃` that is not surjective, and `δ̃` is a `σ̃`-derivation.
+- `K` is a free field: Cohn's universal field of fractions of a free algebra over `ℚ`.
+- `σ` is an endomorphism of `K` that is not surjective, and `δ` is a `σ`-derivation.
 - `R` is a left PCI ring and a left V-ring.
 - `R` is not right Ore, not a right PCI ring and not a right V-ring.
 
 It follows that:
 
-- `Rᵒᵖ` is a right PCI ring that is not left PCI (Corollary 5.3 (1)). This answers the
+- `Rᵒᵖ` is a right PCI ring that is not left PCI (Corollary 2.6 (1)). This answers the
   Cozzens–Faith and Damiano question in the negative.
-- `Rᵒᵖ` is a right PCI domain, and a right V-domain, that is not left Ore (Corollary 5.3 (2)).
-- `R` is a left V-domain that is not a right V-domain (Corollary 5.3 (3)). This answers the
+- `Rᵒᵖ` is a right PCI domain, and a right V-domain, that is not left Ore (Corollary 2.6 (2)).
+- `R` is a left V-domain that is not a right V-domain (Corollary 2.6 (3)). This answers the
   Cozzens–Faith V-domain question in the negative.
 - `R` is an Ore extension `K[t; σ, δ]` that is a left V-domain with `σ` not onto
-  (Corollary 5.3 (4)). Jain, Lam and Leroy said they had no such example.
+  (Corollary 2.6 (4)). Jain, Lam and Leroy said they had no such example.
 
 The paper's Main Theorem also states that `R` is simple, a principal left ideal domain, left
 Noetherian and left hereditary. These claims are not among the compared statements.
@@ -100,12 +100,12 @@ theorem exists_isLeftPCIRing_not_isRightPCIRing :
   sorry
 
 /-- A left PCI ring need not be right PCI: the Main Theorem's example. Passing to the opposite
-ring, this is Corollary 5.3 (1) of the paper, that a right PCI ring need not be left PCI. -/
+ring, this is Corollary 2.6 (1) of the paper, that a right PCI ring need not be left PCI. -/
 theorem not_forall_isLeftPCIRing_imp_isRightPCIRing :
     ¬ ∀ (R : Type) [Ring R], IsLeftPCIRing R → IsRightPCIRing R := by
   sorry
 
-/-- A left V-domain need not be a right V-domain (Corollary 5.3 (3)). -/
+/-- A left V-domain need not be a right V-domain (Corollary 2.6 (3)). -/
 theorem not_forall_isLeftVRing_imp_isRightVRing :
     ¬ ∀ (R : Type) [Ring R], IsDomain R → IsLeftVRing R → IsRightVRing R := by
   sorry
@@ -128,25 +128,27 @@ that the two copies agree.
   compared statements live in `Type`.
 - **Base field.** The paper works over any countable commutative field `k`. The Lean
   development takes `k = ℚ`.
-- **Proposition 2.2.** The Lean proof uses the Baer-criterion argument given after the
-  proposition (solving `g(T_f)(v) = e` for every right-hand side `e`). It does not go through
-  Jain–Lam–Leroy's Theorem 3.2.
-- **"Not right PCI".** This is derived from Lemma 2.6 (a PCI domain that is not a division
-  ring is a V-ring) and from the countability argument of Lemma 2.4. It does not use
-  Cozzens–Faith 6.17. Lemma 2.4 is proved on the left and applied to `Rᵐᵒᵖ`.
-- **Construction.** The tower of fields is formalized in the fixed-symbol variant of the
-  paper's Remark 5.2, as the paper describes.
-- **Cohn's theory.** Cohn's Facts 3.1 are proved in this repository, not assumed: free
-  algebras are firs, semifirs have universal fields of fractions, and honest maps extend to
-  them. The general Ore extension `K[t; σ, δ]` is also built here, because Mathlib only has
-  the case `δ = 0`.
-- **Corollary 5.3.** Items (1) and (3) are compared theorems. Item (1) is stated for `R`
+- **Proposition 2.2.** Formalized as in the paper: every proper cyclic left module `R/Rf` is
+  divisible (`IsCFClosed`), hence injective by Baer's criterion over the principal left ideal
+  domain `R`. The "left V" step (a maximal left ideal is non-zero, so `R/L` is a proper cyclic
+  module) is `isLeftVRing_of_isLeftPCIRing`, stated for any ring that is not a division ring.
+- **"Not right PCI" and "not right V".** Both come from the countability argument of
+  Lemma 2.4, as in the paper; Cozzens–Faith 6.17 is not used. Lemma 2.4 is proved on the left
+  and applied to `Rᵐᵒᵖ`.
+- **Construction.** Construction 4.1 is formalized with `Z = ℕ`: the tasks `(f, g, e)` are
+  coded by an injection into `ℕ`, and the generators `x^τ_{l,j}` are the symbols
+  `⟨code τ, l, j⟩` under a pairing function. Unused symbols get `d = 0`, as in the paper.
+- **Cohn's theory.** Theorem 3.1 (Cohn) is proved in this repository, not assumed: free
+  algebras are firs, and a semifir has a universal field of fractions with the universal
+  property of a localization. The general Ore extension `K[t; σ, δ]` is also built here,
+  because Mathlib only has the case `δ = 0`.
+- **Corollary 2.6.** Items (1) and (3) are compared theorems. Item (1) is stated for `R`
   itself (a left PCI ring need not be right PCI), which is the paper's statement about `Rᵒᵖ`
   read through the opposite ring, so both compared corollaries use the same ring. Items (2)
-  and (4) are not
-  stated separately in Lean. Item (2) is visible in the Main Theorem's statement (`R` is not
-  right Ore, so `Rᵐᵒᵖ` is not left Ore). Item (4) is visible in the construction; the
-  compared existential statement does not record that the witness is an Ore extension.
+  and (4) are not stated separately in Lean. Item (2) is visible in the Main Theorem's
+  statement (`R` is not right Ore, so `Rᵐᵒᵖ` is not left Ore). Item (4) is visible in the
+  construction; the compared existential statement does not record that the witness is an
+  Ore extension.
 
 ## Proof account
 
@@ -155,38 +157,41 @@ The following summarizes the paper; section numbers refer to it.
 **Section 2: reduction to linear equations.** Let `R = K[t; σ, δ]` with coefficients on the
 left and `t a = σ(a) t + δ(a)`. For a monic `f` of degree `n`, identify `R/Rf` with `Kⁿ`.
 Left multiplication by `t` then becomes the pseudo-linear map `T_f(v) = σ(v) C_f + δ(v)`,
-where `C_f` is the companion matrix of `f`. Suppose that for all monic `f`, all `g` of degree
-at least 1 and all `e`, the equation `g(T_f)(v) = e` has a solution `v`. Then `R = Rf + gR`
-for all non-zero `f` and `g`. By Baer's criterion over the principal left ideal domain `R`,
-every proper cyclic left module `R/Rf` is then injective, so `R` is left PCI and hence left V
-(Proposition 2.2, Lemma 2.6).
+where `C_f` is the companion matrix of `f`, and left multiplication by `g` becomes `g(T_f)`
+(Lemma 2.1). Suppose that `g(T_f)` is onto `Kⁿ` for all monic `f, g` of degree at least 1.
+Then every proper cyclic left module `R/Rf` is divisible, hence injective by Baer's criterion
+over the principal left ideal domain `R`; so `R` is left PCI, simple, and left V
+(Proposition 2.2).
 
 Now suppose `σ` is not onto and `c ∉ σ(K)`. A degree count shows that `tR ∩ ctR = 0`, so `R`
 is not right Ore (Proposition 2.3). A cardinality argument in the spirit of Lawrence then shows
-that when `R` is countable, no non-zero countable right module is injective. The right ideal `⊕ᵢ bⁱaR` is
-free of countable rank, so an injective module `E` would satisfy `|E^ℕ| ≤ |E|`. In particular
-no simple right module is injective, so `R` is not right V (Lemma 2.4), and hence not right
-PCI (Lemma 2.6).
+that when `R` is countable, no non-zero countable right module is injective: the right ideal
+`⊕ᵢ bⁱaR` is free of countable rank, so an injective module `E` would satisfy `|E^ℕ| ≤ |E|`.
+In particular no simple right module is injective, so `R` is neither right V nor right PCI
+(Lemma 2.4). The Main Theorem thus reduces to Theorem 2.5: there is a countable `(K, σ, δ)`
+with `σ` not onto over which every `g(T_f)` is onto.
 
 **Section 3: free fields.** Let `𝓕(Y)` be the free field on a set `Y`: the universal field of
-fractions of the free algebra `ℚ⟨Y⟩`. Choose an injective map `s : Y → Y` and an arbitrary map
-`d : Y → 𝓕(Y)`. There is exactly one endomorphism `σ` of `𝓕(Y)` and one `σ`-derivation `δ`
-extending them (Proposition 3.6). To see this, send `y` to the matrix `[[s(y), d(y)], [0, y]]`.
-This gives a homomorphism `ℚ⟨Y⟩ → M₂(𝓕(Y))`. It inverts every full matrix, so it extends to
-`𝓕(Y)`, and `σ` and `δ` can be read off the matrix entries. If `y₀ ∉ s(Y)`, then
-`y₀ ∉ σ(𝓕(Y))`. The proof uses the automorphism `y₀ ↦ y₀ + 1`, which fixes `σ(𝓕(Y))` but
-moves `y₀` (Lemma 3.7).
+fractions of the free algebra `ℚ⟨Y⟩` (Theorem 3.1, Cohn). Two homomorphisms out of `𝓕(Y)`
+that agree on `ℚ⟨Y⟩` are equal (Lemma 3.2). Choose an injective map `s : Y → Y` and an
+arbitrary map `d : Y → 𝓕(Y)`. There are an endomorphism `σ` of `𝓕(Y)` and a `σ`-derivation
+`δ` extending them (Proposition 3.5). To see this, send `y` to the matrix
+`[[s(y), d(y)], [0, y]]`. This gives a homomorphism from `ℚ⟨Y⟩` to the upper triangular
+`2 × 2` matrices over `𝓕(Y)`. It inverts every full matrix, so it extends to `𝓕(Y)`, and `σ`
+and `δ` can be read off the matrix entries. If `y₀ ∉ s(Y)`, then `y₀ ∉ σ(𝓕(Y))`. The proof
+uses the automorphism `y₀ ↦ y₀ + 1`, which fixes `σ(𝓕(Y))` but moves `y₀` (Lemma 3.6).
 
-**Section 4: adjoining one solution.** To solve one equation `g(T_f)(v) = e` of degree
-`m = deg g`, adjoin `nm` new free generators `x_{l,j}`. Make them fixed by `σ` and set
-`δ(x_j) = x_{j+1}`. Then `g(T_f)(x₀)` involves exactly one unknown quantity, `δ(x_{m-1})`.
-Define it to be the value that makes the equation hold (Proposition 4.3).
-
-**Section 5: the tower.** Start from `𝓕(y₀, y₁, …)` with the shift `yᵢ ↦ yᵢ₊₁` and `δ = 0`.
-Repeat the one-equation step for every equation over the current field, countably many
-times. The union `K̃` solves every equation, stays countable, and keeps `y₀ ∉ σ̃(K̃)`
-(Theorem 2.5). The Lean proof uses the variant of Remark 5.2, which fixes all symbols in
-advance.
+**Section 4: the construction.** Take `Y = {y₀, y₁, …} ⊔ Z` with `Z` countably infinite,
+`K = 𝓕(Y)`, and `s` the shift `yᵢ ↦ yᵢ₊₁` on the first part and the identity on `Z`. A task
+is a triple `(f, g, e)`: the coefficient lists of monic `f, g` of degrees `n, m ≥ 1` and a
+right-hand side `e ∈ Kⁿ`. Tasks depend only on `K`, not on the `σ, δ` still to be chosen. For
+every task reserve `nm` generators in `Z`, forming vectors `x₀, …, x_{m-1} ∈ Kⁿ`. These
+generators are fixed by `σ`, so `T_f(x_j) = x_j C_f + δ(x_j)`, and prescribing `δ` on them is
+the same as prescribing `T_f`. Choose `d` so that `T_f(x_j) = x_{j+1}` and
+`T_f(x_{m-1}) = e − Σ_{j<m} g_j x_j`; then `g(T_f)(x₀) = e`. The prescriptions involve only
+the coefficients of `f`, `g` and `e`, so all of them are imposed at once by Proposition 3.5,
+and `y₀ ∉ σ(K)` by Lemma 3.6. There is no tower of fields (Construction 4.1, which proves
+Theorem 2.5).
 
 ## Repository layout
 
@@ -196,24 +201,25 @@ advance.
   environment.
 - `LeftPCI.lean`: the library root, which imports every module below.
 - `LeftPCI/FreeAlgebra/`: Cohn's theorem that a free algebra over a field is a fir, proved via
-  the weak algorithm (`Words`, `WeakAlgorithm`, `Fir`). This is Fact (F1).
+  the weak algorithm (`Words`, `WeakAlgorithm`, `Fir`). This is the first half of Theorem 3.1.
 - `LeftPCI/FreeField/`: full matrices and honest maps (`Full`, `FullCalculus`); semifirs are
   Sylvester domains (`Sylvester`); the universal localization at full matrices
   (`UniversalLocalization`); the display model (`DisplayModel`); Cramer's rule (`Cramer`);
-  the universal field of fractions (`UniversalField`, `Interface`). These are Facts (F2)
-  and (F3).
+  the universal field of fractions (`UniversalField`, `Interface`). This is the second half
+  of Theorem 3.1, with Lemmas 3.2 and 3.3 derived from it in `Interface`.
 - `LeftPCI/OrePoly/`: the Ore extension `K[t; σ, δ]` (`Basic`), its degree theory (`Degree`),
   the left division algorithm and principal left ideals (`Division`), and the failure of the
   right Ore condition (`RightOre`).
 - `LeftPCI/Counterexample/`, following the paper:
   - `Defs`: the definitions of the statement.
-  - `Adjoin`: Section 2.1 and Section 4.
+  - `Adjoin`: Section 2.1 (the modules `R/Rf`, `T_f` and Lemma 2.1).
   - `OreExtension`: Propositions 2.2 and 2.3.
   - `Countable`: Lemma 2.4.
-  - `PCIToV`: Lemma 2.6.
+  - `PCIToV`: the "left V" step of Proposition 2.2 (a PCI ring that is not a division ring is
+    a V-ring).
   - `FreeFieldExt`: Section 3.
-  - `Tower`: Section 5 and Theorem 2.5.
-  - `Closure`: the Main Theorem and Corollary 5.3 (1), (3).
+  - `Direct`: Construction 4.1 and Theorem 2.5.
+  - `Closure`: the Main Theorem and Corollary 2.6 (1), (3).
 - `paper/`: the paper (LaTeX source and PDF).
 - `comparator.json`: the `lake comparator` configuration naming the three compared theorems.
 - `formalization.yaml`: structured metadata (provenance, sources, automation, fidelity,

@@ -11,10 +11,10 @@ namespace LeftPCI.FreeField
 
 universe u v
 
-/-! # The universal field of fractions — interface (Facts 3.1 (F2), (F3))
+/-! # The universal field of fractions — interface (Theorem 3.1)
 
 This file states, as a `Prop`-valued structure (never an axiom), Cohn's universal field of
-fractions, Fact (F2) of Section 3 of the paper `paper/pci_counterexample.tex`:
+fractions, Theorem 3.1 (Cohn) of the paper `paper/pci_counterexample.tex`:
 
 > (Cohn, *Skew Fields* 1995, Cor. 4.5.9 p. 182; *FIR* 2006 Thm 7.5.13).  A semifir `R` has
 > a universal field of fractions, namely the universal localization `R_Φ` of `R` at the set `Φ` of
@@ -24,11 +24,16 @@ fractions, Fact (F2) of Section 3 of the paper `paper/pci_counterexample.tex`:
 homomorphism (existence *and* uniqueness of factorizations), with `K` a division ring.  The
 consequences used in the paper are **derived** here:
 
-* `IsUniversalFieldOfFractions.subfield_eq_top` (Lemma 3.2): a division subring of `K`
+* `IsUniversalFieldOfFractions.ext` (the rigidity Lemma 3.2): two homomorphisms out of `K` that
+  agree on `ι(R)` are equal.
+* `IsUniversalFieldOfFractions.subfield_eq_top` (Lemma 3.3): a division subring of `K`
   containing `ι(R)` is all of `K`.  Derived from uniqueness plus the linear-algebra fact that a
   matrix over a division subring `L ⊆ K` invertible over `K` is invertible over `L`.
-* `exists_extend_of_isHonest` (the direction of Fact (F3) that is used: honest maps extend).
-* Retracts are honest (Lemma 3.3) — `LeftPCI.FreeField.isHonest_of_leftInverse` in `Full.lean`.
+* `exists_extend_of_isHonest`: an honest endomorphism of `R` extends to `K`.  The paper gets
+  this directly from Theorem 3.1 (in the proofs of Proposition 3.5 and Lemma 3.6, after
+  Lemma 3.4 has shown the endomorphism honest).
+* Homomorphisms with a left inverse are honest (Lemma 3.4) —
+  `LeftPCI.FreeField.isHonest_of_leftInverse` in `Full.lean`.
 
 The existence of the universal field of fractions is **proved** in `UniversalField.lean`
 (`hasUniversalFieldOfFractions_of_fullClosed`, and `hasUniversalFieldOfFractions_freeAlgebra`
@@ -111,7 +116,7 @@ theorem _root_.LeftPCI.FreeField.isUnit_of_isUnit_map_subfield {K : Type v} [Div
     simpa [W, Matrix.one_apply, Pi.single_apply, eq_comm] using this
   exact ⟨⟨A, W, mul_eq_one_comm.1 hWA, hWA⟩, rfl⟩
 
-/-- **`K` is epic** (Lemma 3.2): the only division subring of `K` containing `ι(R)` is `K` itself. -/
+/-- **`K` is epic** (Lemma 3.3): the only division subring of `K` containing `ι(R)` is `K` itself. -/
 theorem subfield_eq_top (h : IsUniversalFieldOfFractions K ι) {L : Subfield K}
     (hL : ∀ r, ι r ∈ L) : L = ⊤ := by
   let ι' : R →+* L := ι.codRestrict L hL
@@ -136,7 +141,8 @@ theorem mem_of_forall (h : IsUniversalFieldOfFractions K ι) {L : Subfield K}
     (hL : ∀ r, ι r ∈ L) (a : K) : a ∈ L := by
   rw [h.subfield_eq_top hL]; exact Subfield.mem_top a
 
-/-- **Fact (F3), the direction needed**: an honest endomorphism of `R` extends to an endomorphism of
+/-- **Honest endomorphisms extend** (paper: Theorem 3.1 applied after Lemma 3.4, in the proofs of
+Proposition 3.5 and Lemma 3.6): an honest endomorphism of `R` extends to an endomorphism of
 `K`. -/
 theorem exists_extend_of_isHonest (h : IsUniversalFieldOfFractions K ι) {f : R →+* R}
     (hf : IsHonest f) : ∃ g : K →+* K, ∀ r, g (ι r) = ι (f r) := by

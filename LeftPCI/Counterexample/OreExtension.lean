@@ -17,19 +17,20 @@ This is **Section 2** of the paper `paper/pci_counterexample.tex`, for
 `t a = σ(a) t + δ(a)` (the paper's convention):
 
 * `IsCFClosed δ` ("Cozzens–Faith closed"): for all nonzero `f, g` and every `m`, there is `y` with
-  `m − g y ∈ R f`, i.e. every proper cyclic left module `R ⧸ R f` is divisible.  (By JLL Lemma 4.3
-  this is the same as: every `g(T_f)` is onto; by JLL Thm 3.2 it is the same as `R` being a left
-  V-domain.)
+  `m − g y ∈ R f`, i.e. every proper cyclic left module `R ⧸ R f` is divisible.  By Lemma 2.1 of
+  the paper (= Jain–Lam–Leroy, Lemma 4.3) this is the same as: every `g(T_f)` is onto, which is
+  the hypothesis of Proposition 2.2 (the paper states it for monic `f, g`; `Direct.isCFClosed`
+  reduces to that case by dividing by leading coefficients, as in the proof of Proposition 2.2).
+  By Jain–Lam–Leroy, Theorem 3.2, it is also the same as `R` being a left V-domain, but that is
+  not used.
 * `injective_quotient_of_isCFClosed` / `isLeftPCIRing_of_isCFClosed`: divisible ⟹ injective over
-  the left principal ideal domain `R` — this is the Baer-criterion argument given after
-  Proposition 2.2 of the paper (the paper's Proposition 2.2 itself only needs the target `e₁` and
-  quotes Jain–Lam–Leroy Thm 3.2; here we solve for every target, Theorem 2.5 holds in that
-  generality, and Baer's criterion is then direct), so `R` is a left PCI ring.
+  the left principal ideal domain `R` — the Baer-criterion argument in the proof of
+  **Proposition 2.2** ("`R` is left PCI"), so `R` is a left PCI ring.
 * `leftIndep_op_X_of_not_surjective`: **Proposition 2.3**, if `c ∉ σ(K)` then `t R ∩ (c t) R = 0`
   (`OrePoly.X_mul_ne_C_mul_X_mul`), phrased in the opposite ring as
   `r * op t = s * op (c t) → r = 0`.  The consequences for the right-hand side (not right Ore,
-  not right V, not right PCI) are drawn in `Closure.lean`, via Lemma 2.4 and Lemma 2.6 instead of
-  Cozzens–Faith 6.17.
+  not right V, not right PCI) are drawn in `Closure.lean` via Lemma 2.4, as in the paper's proof
+  of the Main Theorem.
 -/
 
 namespace Counterexample

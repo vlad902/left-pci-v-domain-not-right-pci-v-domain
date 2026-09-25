@@ -7,7 +7,8 @@ import Mathlib.RingTheory.SimpleModule.Basic
 /-!
 # PCI rings and V-domains are not left-right symmetric
 
-*Reference:* `paper/pci_counterexample.tex` (Main Theorem = Theorem 1.1, Corollary 5.3).
+*Reference:* `paper/pci_counterexample.tex` (Main Theorem = Theorem 1.1,
+Corollary 2.6).
 
 A ring `R` is a **left PCI ring** if every proper cyclic left `R`-module (a cyclic module not
 isomorphic to `R`) is injective, and a **left V-ring** if every simple left `R`-module is
@@ -16,8 +17,8 @@ right PCI ring is left PCI has been open since Faith (1973), and whether every l
 a right V-domain goes back to Cozzens–Faith (1975) and is restated as open by Jain–Lam–Leroy
 (2009).
 
-Both have negative answers: there is a countable domain (an Ore extension `K̃[t; σ̃, δ̃]` over a
-countable division ring built from Cohn's free fields) which is a left PCI ring and a left V-ring,
+Both have negative answers: there is a countable domain (an Ore extension `K[t; σ, δ]` over a
+countable division ring `K` which is one of Cohn's free fields) which is a left PCI ring and a left V-ring,
 but is not right Ore, not a right PCI ring and not a right V-ring. Its opposite ring is a right
 PCI ring which is not left PCI.
 
@@ -64,12 +65,12 @@ theorem exists_isLeftPCIRing_not_isRightPCIRing :
   sorry
 
 /-- A left PCI ring need not be right PCI: the Main Theorem's example. Passing to the opposite
-ring, this is Corollary 5.3 (1) of the paper, that a right PCI ring need not be left PCI. -/
+ring, this is Corollary 2.6 (1) of the paper, that a right PCI ring need not be left PCI. -/
 theorem not_forall_isLeftPCIRing_imp_isRightPCIRing :
     ¬ ∀ (R : Type) [Ring R], IsLeftPCIRing R → IsRightPCIRing R := by
   sorry
 
-/-- A left V-domain need not be a right V-domain (Corollary 5.3 (3)). -/
+/-- A left V-domain need not be a right V-domain (Corollary 2.6 (3)). -/
 theorem not_forall_isLeftVRing_imp_isRightVRing :
     ¬ ∀ (R : Type) [Ring R], IsDomain R → IsLeftVRing R → IsRightVRing R := by
   sorry

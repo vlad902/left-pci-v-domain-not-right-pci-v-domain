@@ -25,21 +25,15 @@
 \newtheorem{construction}[theorem]{Construction}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
-\newtheorem{facts}[theorem]{Facts}
 
 \newcommand{\N}{\mathbb N}
-\newcommand{\Q}{\mathbb Q}
 \newcommand{\M}{\mathrm M}
+\newcommand{\UT}{\mathrm{UT}_2}
 \newcommand{\free}[1]{k\langle #1\rangle}
 \newcommand{\ff}[1]{\mathcal F(#1)}
 \newcommand{\Hom}{\operatorname{Hom}}
 \newcommand{\op}{\mathrm{op}}
 \newcommand{\id}{\mathrm{id}}
-\newcommand{\Fix}{\operatorname{Fix}}
-\newcommand{\Rt}{\widetilde R}
-\newcommand{\Kt}{\widetilde K}
-\newcommand{\st}{\tilde\sigma}
-\newcommand{\dt}{\tilde\delta}
 \newcommand{\T}{\mathcal T}
 
 \title{PCI rings and V-domains are not left-right symmetric}
@@ -48,330 +42,303 @@
 \begin{document}
 
 \begin{abstract}
-We construct a countable domain $R$ which is a left PCI domain (every proper cyclic left $R$-module is injective; in particular $R$ is a simple principal left ideal domain and a left V-domain) but which is not right Ore. Consequently $R$ is neither a right V-ring nor a right PCI ring, and its opposite ring $R^{\op}$ is a right PCI domain which is not left PCI, not left V, and not left Ore. This answers, in the negative, questions of Cozzens and Faith, of Damiano, and of Jain, Lam and Leroy. The ring is an Ore extension $\Kt[t;\st,\dt]$ over a division ring $\Kt$ with a non-surjective endomorphism $\st$; the division ring is a free field in the sense of Cohn, chosen so that every linear equation of the kind that governs divisibility of the cyclic modules $R/Rf$ has a solution.
+We construct a countable domain $R$ which is a left PCI domain---every proper cyclic left $R$-module is injective---but which is not right Ore. Consequently $R$ is neither a right V-ring nor a right PCI ring, while its opposite ring $R^{\op}$ is a right PCI domain which is not left PCI, not a left V-ring, and not left Ore. This answers, in the negative, questions of Cozzens and Faith, of Damiano, and of Jain, Lam and Leroy. The ring is an Ore extension $K[t;\sigma,\delta]$ in which $K$ is a free field in the sense of Cohn and $\sigma$ is a non-surjective endomorphism. The endomorphism and the derivation are prescribed on the free generators of $K$ in such a way that every linear equation governing the divisibility of a cyclic module $R/Rf$ is solved by a vector of free generators.
 \end{abstract}
 
 \maketitle
 
 \section{Introduction}
 
-A ring $R$ is a \emph{right PCI ring} if every proper cyclic right $R$-module, that is, every cyclic right module not isomorphic to $R_R$, is injective; it is a \emph{right V-ring} if every simple right $R$-module is injective. Faith \cite[Theorem]{Fai73} showed that a right PCI ring is either semisimple Artinian or a simple right semihereditary right Ore domain, and Damiano \cite[Theorem~1]{Dam79} showed that it is then right Noetherian. Examples of (two-sided) PCI domains were given by Cozzens \cite{Coz70}. Cozzens and Faith \cite[6.25, 6.26]{CF75} (originally \cite[Theorem~22]{Fai73}) showed, using a theorem of Boyle \cite{Boy74}, that a right Noetherian right PCI domain which is \emph{left Ore} is left Noetherian and then also left PCI; by Damiano's theorem the hypothesis that it be right Noetherian is automatic. Whether every right PCI ring is left PCI has been open since \cite{Fai73} (see also \cite[\S2]{BG75} and \cite{CF75}), and is restated as open in \cite[\S2]{JS09}: the question is equivalent to asking whether a right PCI domain must be left Ore \cite{Dam79}, and its cousin, whether a left V-domain must be a right V-domain, goes back to Cozzens and Faith \cite[\S7, (10)]{CF75} and is restated as open in \cite[\S1]{JLL09} and \cite[Remark~2.8]{BDV18}. Cozzens and Faith asked for ``a right V-domain which is not a left Ore domain'' \cite[\S7, (7)]{CF75} and for ``a right Noetherian right V-(PCI-)domain which is not a left V-(PCI-)domain'' \cite[\S7, (10)]{CF75}, and proposed to look for one among Ore extensions $K[t;\sigma,\delta]$ over a division ring $K$ with a non-surjective endomorphism $\sigma$, an idea taken up in \cite[\S6]{JLL09}, where it is shown that for a left V-domain of the form $K[t;\sigma,\delta]$ the ring is right PCI if and only if $\sigma$ is onto, and where the authors state that they have no example of a left V-domain $K[t;\sigma,\delta]$ with $\sigma$ not onto.
+A ring $R$ is a \emph{right PCI ring} if every proper cyclic right $R$-module---that is, every cyclic right module not isomorphic to $R_R$---is injective, and a \emph{right V-ring} if every simple right $R$-module is injective; left PCI rings and left V-rings are defined symmetrically. Faith \cite{Fai73} showed that a right PCI ring is either semisimple Artinian or a simple right semihereditary right Ore domain, and Damiano \cite[Theorem~1]{Dam79} showed that in the second case it is right Noetherian. Examples of PCI domains (on both sides) were given by Cozzens \cite{Coz70}. Whether every right PCI ring is left PCI has been open since \cite{Fai73}; see \cite[\S2]{BG75}, \cite[\S7]{CF75} and \cite[\S2]{JS09}. Cozzens and Faith \cite[6.25, 6.26]{CF75}, using a theorem of Boyle \cite{Boy74}, showed that a right Noetherian right PCI domain which is left Ore is left PCI; since right Noetherianity is automatic by Damiano's theorem, the question is whether a right PCI domain must be left Ore. The companion question, whether a left V-domain must be a right V-domain, goes back to Cozzens and Faith \cite[\S7, (10)]{CF75} and is restated as open in \cite[\S1]{JLL09} and \cite[Remark~2.8]{BDV18}. Cozzens and Faith \cite[\S7, (7), (10)]{CF75} proposed to look for counterexamples among Ore extensions $K[t;\sigma,\delta]$ over a division ring $K$ with a non-surjective endomorphism $\sigma$. Jain, Lam and Leroy \cite[\S6]{JLL09} took this up: they showed that a left V-domain of this form is right PCI if and only if $\sigma$ is onto \cite[Theorem~6.2]{JLL09}, and remarked that they knew of no left V-domain $K[t;\sigma,\delta]$ with $\sigma$ not onto \cite[Remark~6.3]{JLL09}.
 
 We produce such an example.
 
 \begin{theorem}[Main Theorem]\label{thm:main}
-Let $k$ be a countable commutative field. There is a countable division ring $\Kt\supseteq k$, an injective but non-surjective endomorphism $\st$ of $\Kt$ and a $\st$-derivation $\dt$ of $\Kt$ such that the Ore extension $\Rt=\Kt[t;\st,\dt]$ has the following properties.
+Let $k$ be a countable commutative field. There are a countable division ring $K\supseteq k$, a non-surjective endomorphism $\sigma$ of $K$ and a $\sigma$-derivation $\delta$ of $K$ such that the Ore extension $R=K[t;\sigma,\delta]$ has the following properties.
 \begin{enumerate}
-\item $\Rt$ is a simple principal left ideal domain and a left PCI domain: every proper cyclic left $\Rt$-module is injective. In particular $\Rt$ is a left V-domain.
-\item $\Rt$ is not right Ore. Consequently $\Rt$ is not a right PCI ring, and not a right V-ring.
+\item $R$ is a simple principal left ideal domain and a left PCI domain; in particular $R$ is a left V-domain.
+\item $R$ is not right Ore, not a right PCI ring, and not a right V-ring.
 \end{enumerate}
-Hence $\Rt^{\op}$ is a simple right Noetherian right hereditary right PCI domain which is not left Ore, not a left V-ring, and not left PCI.
+Consequently $R^{\op}$ is a simple right Noetherian right hereditary right PCI domain which is not left Ore, not a left V-ring, and not left PCI.
 \end{theorem}
 
-The strategy is the one suggested in \cite[\S7, (10)]{CF75}: divisibility of the cyclic modules $R/Rf$ over $R=K[t;\sigma,\delta]$ is governed by linear equations in $K^n$ involving $\sigma$ and $\delta$ (Section~\ref{sec:ore}), and one has to enlarge $K$ until all such equations have solutions while keeping $\sigma$ non-surjective. The enlargement is done with Cohn's free fields (Section~\ref{sec:freefield}): the solutions are adjoined as free generators, which guarantees that nothing collapses, and the resulting free field carries an extension of $\sigma$ and $\delta$ because both are prescribed on generators. This is the same manoeuvre that Cohn uses in \cite[\S5]{Coh77} and \cite[\S5.9]{CohSF}. Non-surjectivity of $\sigma$ in the limit is checked with a single automorphism of the free field (Lemma~\ref{lem:nonsurj}). The only results quoted without proof are the standard ones on Ore extensions and PCI rings from \cite{CF75,Fai73,JLL09} and the following facts from Cohn's theory: a free algebra is a fir, a semifir has a universal field of fractions, and honest homomorphisms extend to universal fields of fractions.
+The proof has two independent halves.
+
+The first half (Section~\ref{sec:ore}) is elementary ring theory over an arbitrary division ring $K$ with an endomorphism $\sigma$ and a $\sigma$-derivation $\delta$. If $f\in R=K[t;\sigma,\delta]$ is monic of degree $n$, the cyclic module $R/Rf$ is the row space $K^n$ with $t$ acting by a pseudo-linear map $T_f$, and $R/Rf$ is injective as soon as the operators $g(T_f)$ on $K^n$, for non-zero $g\in R$, are all surjective; this is Baer's criterion, and it gives a criterion for $R$ to be left PCI (Proposition~\ref{prop:criterion}). If $\sigma$ is not surjective then $R$ is not right Ore (Proposition~\ref{prop:notore}), and a cardinality argument shows that a countable such $R$ has no non-zero countable injective right module, so is neither a right V-ring nor a right PCI ring (Lemma~\ref{lem:countable}). The Main Theorem is thereby reduced to Theorem~\ref{thm:target}: there is a countable $(K,\sigma,\delta)$ with $\sigma$ not surjective over which all the operators $g(T_f)$ are surjective.
+
+The second half (Sections~\ref{sec:freefield} and~\ref{sec:construction}) constructs $(K,\sigma,\delta)$. We take $K$ to be Cohn's free field on a countable set $Y$ of generators. The only input from Cohn's theory is that the free algebra $\free Y$ has a universal field of fractions; from this we derive, following Cohn, that an endomorphism and a twisted derivation of $K$ may be prescribed arbitrarily on $Y$ (Proposition~\ref{prop:extend}), and that the endomorphism is not surjective if its restriction to $Y$ is not (Lemma~\ref{lem:nonsurj}). The construction itself rests on a single observation. If $x\in K^n$ is a vector whose coordinates are fixed by $\sigma$, then $T_f(x)=xC_f+\delta(x)$, where $C_f$ is the companion matrix of $f$; so to prescribe $\delta$ on the coordinates of $x$ is the same as to prescribe $T_f(x)$. For each equation $g(T_f)(v)=e$, with $f$ and $g$ monic of degrees $n$ and $m$, we therefore reserve $nm$ generators fixed by $\sigma$, arrange them into vectors $x_0,\dots,x_{m-1}\in K^n$, and decree that $T_f(x_j)=x_{j+1}$ for $j<m-1$ and $T_f(x_{m-1})=e-\sum_{j<m}g_jx_j$; then $g(T_f)(x_0)=e$. These prescriptions involve only the coefficients of $f$, $g$ and $e$, and not $\sigma$ or $\delta$ themselves, so all of them can be imposed at once. No tower of fields and no compatibility conditions are needed.
 
 \subsection*{Conventions}
-Rings have an identity, and homomorphisms preserve it. A \emph{division ring} is a ring in which every non-zero element is invertible. Throughout, $k$ is a commutative field. For a division ring $K$, an \emph{endomorphism} $\sigma$ of $K$ is a ring endomorphism (automatically injective), and a \emph{$\sigma$-derivation} of $K$ is an additive map $\delta\colon K\to K$ with
+Rings have an identity, and homomorphisms preserve it; $k$ is a commutative field. For a division ring $K$, an \emph{endomorphism} $\sigma$ of $K$ is a ring endomorphism (automatically injective), and a \emph{$\sigma$-derivation} of $K$ is an additive map $\delta\colon K\to K$ with
 \[
 \delta(ab)=\sigma(a)\delta(b)+\delta(a)b\qquad(a,b\in K).
 \]
-For $u\ne0$ one has $\delta(u^{-1})=-\sigma(u)^{-1}\delta(u)u^{-1}$, since $0=\delta(uu^{-1})=\sigma(u)\delta(u^{-1})+\delta(u)u^{-1}$. A subset $D$ of a division ring is a \emph{division subring} if it is a subring closed under inverses of non-zero elements; the division subring \emph{generated} by a subset $S$ is the smallest division subring containing $S$. Two facts will be used constantly: the equalizer $\{u:\alpha(u)=\beta(u)\}$ of two ring homomorphisms $\alpha,\beta$ out of a division ring is a division subring; and if $\alpha=\beta$, the equalizer $\{u:\delta(u)=\delta'(u)\}$ of an $\alpha$-derivation $\delta$ and an $\alpha$-derivation $\delta'$ (both defined on the domain of $\alpha$ with values in the codomain, satisfying the Leibniz rule with respect to $\alpha$) is a division subring, by the formula for $\delta(u^{-1})$.
+A \emph{division subring} of a division ring is a subring closed under inverses of non-zero elements. For a map $\alpha$ defined on $K$ and a row vector or matrix $v$ over $K$, we write $\alpha(v)$ for the entrywise image. Compositions of maps are written by juxtaposition: $\phi\psi=\phi\circ\psi$.
 
 \section{Ore extensions over division rings}\label{sec:ore}
 
-Let $K$ be a division ring with an endomorphism $\sigma$ and a $\sigma$-derivation $\delta$. The \emph{Ore extension} $R=K[t;\sigma,\delta]$ is the ring which is a free left $K$-module with basis $1,t,t^2,\dots$ and multiplication determined by
+Throughout this section $K$ is a division ring with an endomorphism $\sigma$ and a $\sigma$-derivation $\delta$. The \emph{Ore extension} $R=K[t;\sigma,\delta]$ is the ring which is a free left $K$-module with basis $1,t,t^2,\dots$ and whose multiplication is determined by
 \[
 ta=\sigma(a)t+\delta(a)\qquad(a\in K).
 \]
-Elements are written $f=\sum_i f_it^i$ with coefficients on the left, and $\deg f$ is the usual degree. Since $\sigma$ is injective, $\deg(fg)=\deg f+\deg g$, so $R$ is a domain, and the units of $R$ are the non-zero elements of $K$. For $f\ne0$ and $r\in R$ there are unique $q,b\in R$ with $r=qf+b$ and $\deg b<\deg f$ (left division algorithm; compare \cite[Theorem~1.3.2]{CohFIR}, where coefficients are written on the right, so that all statements there are the mirror images of the ones here). Hence every left ideal of $R$ is principal, $R$ is a \emph{principal left ideal domain}, and $R$ is \emph{atomic}: every non-zero non-unit is a finite product of atoms (irreducible elements), by induction on the degree.
+Its elements are written $f=\sum_if_it^i$ with the coefficients on the left, and $\deg f$ is the usual degree. Since $\sigma$ is injective, $\deg(fg)=\deg f+\deg g$; so $R$ is a domain, and its units are the non-zero elements of $K$. There is a left division algorithm: for $f\ne0$, every $r\in R$ can be written uniquely as $r=qf+b$ with $\deg b<\deg f$ (compare \cite[Theorem~1.3.2]{CohFIR}, where the coefficients are written on the right). Hence every left ideal of $R$ is of the form $Rf$, and $R$ is a \emph{principal left ideal domain}; in particular $R$ is left Noetherian and left hereditary. Since $R$ is a domain, $Rf\cong R$ as left $R$-modules whenever $f\ne0$.
 
 \subsection{The modules $R/Rf$}
-Let $f=t^n+f_{n-1}t^{n-1}+\dots+f_0$ be monic of degree $n\ge1$. Every element of $R$ is uniquely of the form $qf+b$ with $\deg b<n$, so the classes of $1,t,\dots,t^{n-1}$ form a basis of $R/Rf$ as a left $K$-vector space, and we identify $R/Rf$ with the space $K^n$ of row vectors by
+Let $f=t^n+f_{n-1}t^{n-1}+\dots+f_0\in R$ be monic of degree $n\ge1$. By the division algorithm, the classes of $1,t,\dots,t^{n-1}$ form a basis of $R/Rf$ as a left $K$-vector space, and we identify $R/Rf$ with the space $K^n$ of row vectors via
 \[
-b=\sum_{i=0}^{n-1}b_it^i+Rf\ \longmapsto\ \bar b=(b_0,\dots,b_{n-1}).
+\sum_{i<n}b_it^i+Rf\ \longmapsto\ (b_0,\dots,b_{n-1}).
 \]
-Let $C_f\in\M_n(K)$ be the companion matrix of $f$, with rows $e_2,\dots,e_n,(-f_0,\dots,-f_{n-1})$, where $e_1,\dots,e_n$ are the standard basis vectors. For a row vector $v$ over any ring containing $K$ to which $\sigma$ and $\delta$ have been extended, we write $\sigma(v)$ and $\delta(v)$ for the entrywise images, and define
+Let $C_f\in\M_n(K)$ be the companion matrix of $f$, whose rows are $e_2,\dots,e_n,(-f_0,\dots,-f_{n-1})$, where $e_1,\dots,e_n$ are the standard basis vectors. Define
 \[
-T_f(v)=\sigma(v)C_f+\delta(v).
+T_f\colon K^n\to K^n,\qquad T_f(v)=\sigma(v)C_f+\delta(v).
 \]
-The map $T_f$ is additive and \emph{pseudo-linear}: $T_f(av)=\sigma(a)T_f(v)+\delta(a)v$ for $a\in K$. For $g=\sum_{i=0}^m g_it^i\in R$ we put $g(T_f)(v)=\sum_{i=0}^m g_i\,T_f^i(v)$, where $T_f^i$ is the $i$-fold iterate and $g_i$ acts by scalar multiplication.
+The map $T_f$ is additive and \emph{pseudo-linear}: $T_f(av)=\sigma(a)T_f(v)+\delta(a)v$ for $a\in K$. For $g=\sum_{i=0}^mg_it^i\in R$ we put
+\[
+g(T_f)(v)=\sum_{i=0}^mg_i\,T_f^{\,i}(v)\qquad(v\in K^n),
+\]
+where $T_f^{\,i}$ is the $i$-fold iterate of $T_f$ and each $g_i$ acts by left scalar multiplication. The same definitions make sense over any division ring $K'\supseteq K$ to which $\sigma$ and $\delta$ have been extended, and then $T_f$ on $K'^n$ restricts to $T_f$ on $K^n$.
 
 \begin{lemma}\label{lem:action}
-Let $f$ be monic of degree $n\ge1$, $g\in R$ and $b\in R$ with $\deg b<n$. Then the coefficient vector of the remainder of $gb$ modulo $Rf$ is $g(T_f)(\bar b)$. In particular
+Under the identification $R/Rf=K^n$, left multiplication by $g\in R$ on $R/Rf$ is the map $g(T_f)$. In particular, for $b=\sum_{i<n}b_it^i$ and $c=\sum_{i<n}c_it^i$,
 \[
-gb\equiv 1\pmod{Rf}\iff g(T_f)(\bar b)=e_1 .
+gb\equiv c\pmod{Rf}\iff g(T_f)(b_0,\dots,b_{n-1})=(c_0,\dots,c_{n-1}).
 \]
 \end{lemma}
 
 \begin{proof}
-Left multiplication by $a\in K$ on $R/Rf$ corresponds to scalar multiplication of $\bar b$ by $a$. Left multiplication by $t$ sends $\sum_{i<n}b_it^i$ to $\sum_{i<n}\sigma(b_i)t^{i+1}+\sum_{i<n}\delta(b_i)t^i$, and $t^n\equiv-\sum_{j<n}f_jt^j\pmod{Rf}$; so the coefficient vector of $tb+Rf$ is $\sigma(\bar b)C_f+\delta(\bar b)=T_f(\bar b)$. Iterating and adding gives the claim for $g=\sum g_it^i$; the last statement is the case where the remainder is $1$, whose coefficient vector is $e_1$.
+Left multiplication by $a\in K$ is scalar multiplication by $a$. Left multiplication by $t$ sends $\sum_{i<n}b_it^i$ to $\sum_{i<n}\sigma(b_i)t^{i+1}+\sum_{i<n}\delta(b_i)t^i$, and $t^n\equiv-\sum_{j<n}f_jt^j\pmod{Rf}$; so its coefficient vector is $\sigma(b)C_f+\delta(b)=T_f(b)$, where $b=(b_0,\dots,b_{n-1})$. Iterating, $t^i$ acts by $T_f^{\,i}$, and summing, $g$ acts by $g(T_f)$.
 \end{proof}
 
-This is the identification of $R/Rf$ with $(K^n,T_f)$ used in \cite[\S4]{JLL09}.
-
-\subsection{The criterion}
-Recall that a domain $R$ is a \emph{left PCI domain} if every proper cyclic left $R$-module is injective, and a \emph{left V-domain} if every simple left $R$-module is injective.
+This is the identification of $R/Rf$ with the pseudo-linear space $(K^n,T_f)$ used in \cite[\S4]{JLL09}.
 
 \begin{proposition}\label{prop:criterion}
-Let $R=K[t;\sigma,\delta]$ and suppose that for every monic $f\in R$ of degree $n\ge1$ and every $g\in R$ of degree $\ge1$ there is $v\in K^n$ with $g(T_f)(v)=e_1$. Then $R=Rf+gR$ for all non-zero $f,g\in R$. Consequently $R$ is a simple ring, a left PCI domain and a left V-domain.
+Suppose that for all monic $f,g\in R$ of degree $\ge1$ the map $g(T_f)\colon K^n\to K^n$, where $n=\deg f$, is surjective. Then $R$ is a simple ring, a left PCI domain and a left V-domain.
 \end{proposition}
 
 \begin{proof}
-Let $f,g\ne0$. If $\deg g=0$ then $g$ is a unit and $gR=R$; if $\deg f=0$ then $Rf=R$. Otherwise write $f=af_1$ with $a\in K^\times$ and $f_1$ monic, so that $Rf=Rf_1$, choose $v$ with $g(T_{f_1})(v)=e_1$ and put $b=\sum_{i<n}v_it^i$. By Lemma~\ref{lem:action}, $gb-1\in Rf_1=Rf$, so $1\in Rf+gR$ and $R=Rf+gR$.
+\emph{$R$ is left PCI.} A cyclic left $R$-module is $R/Rf$ for some $f\in R$. If $f=0$ this is $R$ itself. If $f\ne0$ it is finite-dimensional over $K$, whereas $R$ is not, so $R/Rf$ is a proper cyclic module, and we must show that it is injective. Since $Rf=Ra^{-1}f$ for $a\in K^\times$, we may take $f$ monic; and since $R/Rf=0$ if $\deg f=0$, we may take $\deg f=n\ge1$. Put $M=R/Rf$. By Baer's criterion, $M$ is injective if and only if every homomorphism from a left ideal of $R$ to $M$ extends to $R$. The left ideals are the $Rg$, and for $g\ne0$ the module $Rg$ is free on $g$, so a homomorphism $Rg\to M$ is the same as an element $m\in M$ (the image of $g$), and it extends to $R$ if and only if $m=gm'$ for some $m'\in M$. Thus $M$ is injective if and only if $gM=M$ for every $g\ne0$. Write $g=ag_1$ with $a\in K^\times$ and $g_1$ monic; then $gM=g_1M$. If $\deg g_1=0$ then $g_1=1$; if $\deg g_1\ge1$ then $g_1M=M$ says, by Lemma~\ref{lem:action}, that $g_1(T_f)$ is surjective on $K^n$, which is the hypothesis.
 
-If $I$ is a non-zero two-sided ideal and $0\ne f\in I$, then $R=Rf+fR\subseteq I$; so $R$ is simple. Since $R$ is an atomic principal left ideal domain, the equivalence of ``$R=Rf+gR$ for all non-zero $f,g$'' with ``$R$ is a left PCI domain'' and with ``$R$ is a left V-domain'' is \cite[Theorem~3.2, (iv)$\Leftrightarrow$(i)$\Leftrightarrow$(ii)]{JLL09}.
+\emph{$R$ is simple.} Let $I\ne0$ be a two-sided ideal and $0\ne f\in I$. Multiplying by the inverse of the leading coefficient we may take $f$ monic. If $\deg f=0$ then $f=1\in I$. Otherwise $f(R/Rf)=R/Rf$ by what has just been proved, so $fb\equiv1\pmod{Rf}$ for some $b\in R$, and $1\in fR+Rf\subseteq I$.
+
+\emph{$R$ is left V.} A simple left $R$-module is $R/L$ for a maximal left ideal $L$. The zero ideal is not maximal, since $Rt$ is a non-zero proper left ideal; so $L\ne0$, and $R/L$ is a proper cyclic module, hence injective.
 \end{proof}
-
-For completeness we indicate why $R=Rf+gR$ for all $f,g$ forces every $R/Rf$ to be injective; this is the content of the cited theorem. Over the principal left ideal domain $R$, a left module $E$ is injective if and only if it is divisible, by Baer's criterion; so $R/Rf$ is injective if and only if for every $g\ne0$ and every $c\in R$ there is $b$ with $gb\equiv c\pmod{Rf}$. When $f$ is an atom, $R/Rf$ is simple, and for $c\notin Rf$ the left ideal $\{r:rc\in Rf\}$ is $Rf'$ for an atom $f'$; from $gb'\equiv1\pmod{Rf'}$ one gets $gb'c\equiv c\pmod{Rf}$. For a general $f=f_1f_2$, the module $R/Rf$ is an extension of $R/Rf_2$ by $Rf_2/Rf_1f_2\cong R/Rf_1$, and an extension of injective modules is injective; induction on the number of atomic factors finishes the argument. The proper cyclic left modules are exactly the $R/Rf$ with $f\ne0$, since $R/Rf$ is finite-dimensional over $K$ while $R$ is not.
 
 \subsection{The right side}
 
 \begin{proposition}\label{prop:notore}
-Let $R=K[t;\sigma,\delta]$ with $\sigma$ not surjective, and let $c\in K\setminus\sigma(K)$. Then $tR\cap ctR=0$. In particular $R$ is not right Ore, and $R$ is not a right PCI ring.
+If $c\in K\setminus\sigma(K)$, then $tR\cap ctR=0$. In particular, if $\sigma$ is not surjective then $R$ is not right Ore.
 \end{proposition}
 
 \begin{proof}
-Suppose $tr=ctr'$ with $r,r'\ne0$; comparing degrees, $\deg r=\deg r'=p$, say, with leading coefficients $r_p,r'_p$. The leading coefficient of $tr$ is $\sigma(r_p)$ and that of $ctr'$ is $c\sigma(r'_p)$, so $c=\sigma(r_pr_p'^{-1})\in\sigma(K)$, a contradiction. Thus $tR\cap ctR=0$ and $R$ is not right Ore. A right PCI domain is right Ore by \cite[6.17]{CF75} (see also \cite[Theorem]{Fai73}), and $R$ is a domain; so $R$ is not right PCI.
+Suppose $tr=ctr'$ with $r,r'\ne0$. Comparing degrees, $\deg r=\deg r'=p$, say, with leading coefficients $r_p$ and $r'_p$. The leading coefficient of $tr$ is $\sigma(r_p)$ and that of $ctr'$ is $c\sigma(r'_p)$, so $c=\sigma(r_p)\sigma(r'_p)^{-1}=\sigma(r_pr_p'^{-1})\in\sigma(K)$, a contradiction.
 \end{proof}
 
-This is \cite[Proposition~6.1]{JLL09} in the form we need. For the failure of the right V-property we use a cardinality argument in the spirit of Lawrence \cite[Theorem~4]{Law77}.
+The same computation appears in the proof of \cite[Proposition~6.1]{JLL09}, where it is used to show that $R_R$ is not uniform. A right PCI domain is right Ore \cite[6.17]{CF75}, so Proposition~\ref{prop:notore} already shows that $R$ is not right PCI when $\sigma$ is not surjective. For the failure of the right V-property we use a cardinality argument in the spirit of Lawrence \cite[Theorem~4]{Law77}; it also gives the failure of the right PCI-property without appeal to \cite{CF75}.
 
 \begin{lemma}\label{lem:countable}
-Let $R$ be a countable domain containing non-zero elements $a,b$ with $aR\cap bR=0$. Then no non-zero countable right $R$-module is injective. In particular no simple right $R$-module is injective, and $R$ is not a right V-ring.
+Let $R$ be a countable domain containing non-zero elements $a,b$ with $aR\cap bR=0$. Then no non-zero countable right $R$-module is injective. Consequently $R$ is neither a right V-ring nor a right PCI ring.
 \end{lemma}
 
 \begin{proof}
-The right ideals $b^iaR$ ($i\in\N$) are independent. Indeed, if $\sum_{i=0}^N b^iar_i=0$, then
+The right ideals $b^iaR$ ($i\in\N$) are independent. Indeed, if $\sum_{i=0}^Nb^iar_i=0$, then
 \[
-ar_0=-b\sum_{i\ge1}b^{i-1}ar_i\ \in\ aR\cap bR=0,
+ar_0=-b\sum_{i=1}^Nb^{i-1}ar_i\in aR\cap bR=0,
 \]
-so $r_0=0$ because $R$ is a domain; cancelling $b$ and repeating gives $r_i=0$ for all $i$. Each $b^iaR\cong R_R$, so $I=\bigoplus_{i\in\N}b^iaR$ is a free right ideal of countably infinite rank. If $E$ is an injective right $R$-module, the restriction map $\Hom_R(R,E)\to\Hom_R(I,E)$ is surjective; since $\Hom_R(R,E)\cong E$ and $\Hom_R(I,E)\cong E^{\N}$, this gives $|E^{\N}|\le|E|$. For a non-zero countable $E$ this is impossible, since $|E^{\N}|\ge2^{\aleph_0}>\aleph_0\ge|E|$. Finally, a simple right module over a countable ring is a cyclic module, hence countable.
+so $r_0=0$ because $R$ is a domain; cancelling $b$ on the left and repeating gives $r_i=0$ for all $i$. Each $b^iaR$ is isomorphic to $R_R$, so $I=\bigoplus_{i\in\N}b^iaR$ is a free right ideal of countably infinite rank. If $E$ is an injective right $R$-module, the restriction map $\Hom_R(R,E)\to\Hom_R(I,E)$ is surjective; as $\Hom_R(R,E)\cong E$ and $\Hom_R(I,E)\cong E^{\N}$, this gives $|E^{\N}|\le|E|$, which is impossible if $E$ is non-zero and countable, since then $|E^{\N}|=2^{\aleph_0}$.
+
+A simple right $R$-module $R/M$ is countable, hence not injective; so $R$ is not a right V-ring. Moreover $R/M$ is a proper cyclic module: $R_R$ is not simple, since $aR$ is a non-zero right ideal and $aR\ne R$ (otherwise $b\in aR\cap bR$), so $R/M\not\cong R_R$. Hence $R$ is not a right PCI ring either.
 \end{proof}
 
 \subsection{Reduction}
-By Propositions~\ref{prop:criterion} (applied with $e=e_1$) and~\ref{prop:notore} and Lemma~\ref{lem:countable}, the Main Theorem follows from:
+The Main Theorem is now reduced to the following statement, which is proved in Section~\ref{sec:construction}.
 
 \begin{theorem}\label{thm:target}
-Let $k$ be a commutative field. There is a division ring $\Kt\supseteq k$ with an endomorphism $\st$ which is not surjective and a $\st$-derivation $\dt$, such that for every monic $f\in\Kt[t;\st,\dt]$ of degree $n\ge1$, every $g\in\Kt[t;\st,\dt]$ of degree $\ge1$ and every $e\in\Kt^n$ there is $v\in\Kt^n$ with $g(T_f)(v)=e$. If $k$ is countable, $\Kt$ can be taken countable.
+Let $k$ be a countable commutative field. There are a countable division ring $K\supseteq k$, a non-surjective endomorphism $\sigma$ of $K$ and a $\sigma$-derivation $\delta$ of $K$ such that, in $R=K[t;\sigma,\delta]$, for all monic $f,g\in R$ of degree $\ge1$ the map $g(T_f)\colon K^n\to K^n$, $n=\deg f$, is surjective.
 \end{theorem}
 
-For the right-hand statements of the Main Theorem we shall also use the following observation, which lets Lemma~\ref{lem:countable} do the work of \cite[6.17]{CF75} in the countable case.
-
-\begin{lemma}\label{lem:pciv}
-Let $R$ be a domain which is not a division ring. If $R$ is a right PCI ring then $R$ is a right V-ring; if $R$ is a left PCI ring then $R$ is a left V-ring.
-\end{lemma}
-
-\begin{proof}
-A simple right $R$-module is $R/M$ for a maximal right ideal $M$. If $R/M\cong R_R$, then the composite $R\to R/M\cong R$ is a surjective endomorphism of $R_R$, hence left multiplication by an element $c$ with $cd=1$ for some $d$; its kernel $\{x:cx=0\}$ is $0$ because $R$ is a domain and $c\ne0$. So $M=0$, and $R_R$ is simple: every non-zero $x$ satisfies $xR=R$, so $xy=1$ for some $y$, and then $(yx-1)y=y(xy)-y=0$ gives $yx=1$ as $y\ne0$. Thus $R$ would be a division ring. Hence $R/M$ is a proper cyclic module, and it is injective when $R$ is right PCI. The left-handed statement is the mirror image.
+\begin{proof}[Proof of the Main Theorem from Theorem~\ref{thm:target}]
+Let $K$, $\sigma$ and $\delta$ be as in Theorem~\ref{thm:target}, and let $R=K[t;\sigma,\delta]$. Then $R$ is a countable principal left ideal domain, and by Proposition~\ref{prop:criterion} it is simple, left PCI and left V. Choose $c\in K\setminus\sigma(K)$. By Proposition~\ref{prop:notore} we have $tR\cap ctR=0$, so $R$ is not right Ore; and by Lemma~\ref{lem:countable}, applied with $a=t$ and $b=ct$, it is neither a right V-ring nor a right PCI ring. The statements about $R^{\op}$ are the mirror images, using that a principal left ideal domain is left Noetherian and left hereditary.
 \end{proof}
 
-The rest of the paper proves Theorem~\ref{thm:target}.
+\begin{corollary}\label{cor:answers}
+Let $R$ be the ring of the Main Theorem.
+\begin{enumerate}
+\item A right PCI ring need not be left PCI \textup{(}\cite{Fai73}, \cite[\S7, (10)]{CF75}, \cite{Dam79}\textup{)}: $R^{\op}$.
+\item A right PCI domain, and a right V-domain, need not be left Ore \textup{(}\cite[\S7, (7)]{CF75}\textup{)}: $R^{\op}$.
+\item A left V-domain need not be a right V-domain \textup{(}\cite[\S7, (10)]{CF75}, \cite[\S1]{JLL09}, \cite[Remark~2.8]{BDV18}\textup{)}: $R$.
+\item There is a left V-domain of the form $K[t;\sigma,\delta]$ with $\sigma$ not onto \textup{(}\cite[Remark~6.3]{JLL09}\textup{)}: $R$.
+\end{enumerate}
+\end{corollary}
 
 \section{Free fields}\label{sec:freefield}
 
-We recall what is needed from Cohn's theory of universal fields of fractions \cite[Chapter~4 and \S5.4]{CohSF}, \cite[Chapters~2, 7]{CohFIR}. A square matrix $A$ of size $p$ over a ring $S$ is \emph{full} if it cannot be written as $A=PQ$ with $P$ of size $p\times r$, $Q$ of size $r\times p$ and $r<p$. A homomorphism $\phi\colon S\to A$ of rings is \emph{fully inverting} if $\phi(A)$ is invertible over $A$ for every full matrix $A$ over $S$; here $\phi(A)$ is the matrix obtained by applying $\phi$ entrywise. A homomorphism $S\to S'$ between rings is \emph{honest} if it maps full matrices over $S$ to full matrices over $S'$. For a set $Y$, $\free Y$ denotes the free associative $k$-algebra on $Y$.
+We recall the little that we need from Cohn's theory of universal fields of fractions \cite[Chapter~4 and \S5.4]{CohSF}, \cite[Chapter~7]{CohFIR}. A square matrix $A$ of size $p$ over a ring $S$ is \emph{full} if it cannot be written as $A=PQ$ with $P$ of size $p\times r$, $Q$ of size $r\times p$ and $r<p$. Over a domain, a $1\times1$ matrix $(a)$ is full if and only if $a\ne0$. A ring homomorphism $\phi\colon S\to B$ is \emph{fully inverting} if for every full matrix $A$ over $S$ the matrix $\phi(A)$ is invertible over $B$.
 
-\begin{facts}\label{facts}
-Let $S$ be a semifir (for instance a fir).
-\begin{enumerate}
-\item[(F1)] The free algebra $\free Y$ is a fir, for every set $Y$ \cite[Corollary~2.5.2]{CohFIR}, \cite[Theorem~5.4.1]{CohSF}.
-\item[(F2)] $S$ has a \emph{universal field of fractions}: a division ring $\mathcal U(S)$ with a fully inverting homomorphism $\lambda\colon S\to\mathcal U(S)$, such that every fully inverting homomorphism $\phi\colon S\to A$ into an arbitrary ring $A$ factors uniquely as $\phi=\phi'\circ\lambda$ with $\phi'\colon\mathcal U(S)\to A$ a ring homomorphism. Indeed $\mathcal U(S)$ is the universal localization of $S$ at the set of all full matrices, which is a division ring \cite[Theorem~4.5.8, Corollary~4.5.9]{CohSF}, \cite[Theorem~7.5.13]{CohFIR}; the factorization property is the defining property of a universal localization \cite[\S4.1]{CohSF}. The map $\lambda$ is injective, because a $1\times1$ matrix $(a)$ with $a\ne0$ is full over a domain.
-\item[(F3)] If $S,S'$ are semifirs and $\phi\colon S\to S'$ is honest, then $\phi$ extends uniquely to a homomorphism $\mathcal U(S)\to\mathcal U(S')$ \cite[Theorem~4.5.10]{CohSF}. The extension is injective, being a homomorphism between division rings.
-\end{enumerate}
-\end{facts}
+Fix a set $Y$ and let $S=\free Y$ be the free associative $k$-algebra on $Y$. We use one theorem of Cohn: the free algebra $S$ is a fir \cite[Corollary~2.5.2]{CohFIR}, and the universal localization of a fir (or semifir) at the set of all its full matrices is a division ring \cite[Theorem~4.5.8, Corollary~4.5.9]{CohSF}, \cite[Theorem~7.5.13]{CohFIR}. Together with the defining property of a universal localization \cite[\S4.1]{CohSF}, this says the following.
 
-We identify $S$ with its image $\lambda(S)$ in $\mathcal U(S)$. The following consequence of (F2) will be used repeatedly.
+\begin{theorem}[Cohn]\label{thm:cohn}
+There are a division ring $\ff Y$ and a fully inverting homomorphism $\lambda\colon S\to\ff Y$ such that every fully inverting homomorphism $\phi\colon S\to B$ into an arbitrary ring $B$ factors uniquely as $\phi=\phi'\lambda$ with $\phi'\colon\ff Y\to B$ a ring homomorphism.
+\end{theorem}
+
+The division ring $\ff Y$ is the \emph{universal field of fractions} of $S$; we call it the \emph{free field} on $Y$ over $k$. The map $\lambda$ is injective, since $(a)$ is full for $a\ne0$, and we regard $S$ as a subring of $\ff Y$, writing $y$ for $\lambda(y)$ when no confusion can arise. The universal property has the following consequence, which does most of the work in this section.
+
+\begin{lemma}[rigidity]\label{lem:rigid}
+Let $\phi,\psi\colon\ff Y\to B$ be ring homomorphisms into a ring $B$. If $\phi\lambda=\psi\lambda$, then $\phi=\psi$.
+\end{lemma}
+
+\begin{proof}
+For a full matrix $A$ over $S$, the matrix $\lambda(A)$ is invertible over $\ff Y$, so $\phi\lambda(A)$ is invertible over $B$. Thus $\phi\lambda$ is fully inverting, and $\phi$ and $\psi$ are both factorizations of it through $\lambda$; they coincide by the uniqueness in Theorem~\ref{thm:cohn}.
+\end{proof}
+
+For instance, $k$ is central in $\ff Y$: for $c\in k^\times$, conjugation by $c$ is an automorphism of $\ff Y$ which agrees with the identity on $S$, hence is the identity. So $\ff Y$ is a $k$-algebra, and every $k$-algebra homomorphism out of $S$ is determined by its values on $Y$.
 
 \begin{lemma}\label{lem:generated}
-$\mathcal U(S)$ is generated by $S$ as a division ring. Consequently, if $S$ is countable, so is $\mathcal U(S)$.
+$\ff Y$ is generated by $Y$ as a division ring. In particular, if $k$ and $Y$ are countable, so is $\ff Y$.
 \end{lemma}
 
 \begin{proof}
-Let $D\subseteq\mathcal U(S)$ be the division subring generated by $S$. A square matrix over $D$ which is invertible over $\mathcal U(S)$ is invertible over $D$ (its rows are left linearly independent over $\mathcal U(S)$, hence over $D$, so it is invertible over the division ring $D$). Thus the corestriction $S\to D$ is fully inverting and factors through $\lambda$ as $\psi\colon\mathcal U(S)\to D$. The composite of $\psi$ with the inclusion $D\subseteq\mathcal U(S)$ is a homomorphism $\mathcal U(S)\to\mathcal U(S)$ which is the identity on $S$, hence equals the identity by the uniqueness in (F2). So $D=\mathcal U(S)$. The division subring generated by a countable set is countable, being the union of the countably many sets obtained by iterating the ring operations and inversion.
+Let $D\subseteq\ff Y$ be the division subring generated by $S$. A square matrix over $D$ which is invertible over $\ff Y$ is invertible over $D$: its rows are left linearly independent over $\ff Y$, hence over $D$, and a square matrix over a division ring with linearly independent rows is invertible. Hence the corestriction $S\to D$ of $\lambda$ is fully inverting, and it factors as $\psi\lambda$ with $\psi\colon\ff Y\to D$. The composite of $\psi$ with the inclusion $D\subseteq\ff Y$ agrees with the identity on $S$, so it is the identity by Lemma~\ref{lem:rigid}, and $D=\ff Y$. If $k$ and $Y$ are countable then so is $S$, and the division subring generated by a countable set is countable.
 \end{proof}
 
-\begin{lemma}\label{lem:retract}
-Let $\phi\colon S\to S'$ and $\rho\colon S'\to S$ be ring homomorphisms with $\rho\circ\phi=\id_S$. Then $\phi$ is honest.
+Lemma~\ref{lem:generated} is used only to control the cardinality of $\ff Y$.
+
+\begin{lemma}\label{lem:honest}
+Let $\phi\colon S\to S$ be a ring endomorphism with a left inverse, that is, a ring endomorphism $\rho$ of $S$ with $\rho\phi=\id_S$. Then $\phi$ maps full matrices to full matrices, and $\lambda\phi\colon S\to\ff Y$ is fully inverting.
 \end{lemma}
 
 \begin{proof}
-If $A$ is full over $S$ and $\phi(A)=PQ$ with $r<p$, then $A=\rho\phi(A)=\rho(P)\rho(Q)$ is not full. This is \cite[Proposition~4.5.1]{CohSF}.
+If $A$ is full of size $p$ and $\phi(A)=PQ$ with $P$ of size $p\times r$, $Q$ of size $r\times p$ and $r<p$, then $A=\rho\phi(A)=\rho(P)\rho(Q)$, contradicting the fullness of $A$. So $\phi(A)$ is full, and $\lambda\phi(A)$ is invertible over $\ff Y$. (This is \cite[Proposition~4.5.1]{CohSF}.)
 \end{proof}
-
-\begin{definition}
-For a set $Y$ we write $\ff Y=\mathcal U(\free Y)$ and call it the \emph{free field} on $Y$ over $k$. By (F1), (F2) it exists, contains $\free Y$, and is generated by $Y$ as a division ring (Lemma~\ref{lem:generated}). The field $k$ is central in $\ff Y$: the centralizer of $k$ is a division subring containing $\free Y$.
-\end{definition}
-
-\begin{lemma}\label{lem:subset}
-Let $Y'\subseteq Y$. The inclusion $\free{Y'}\to\free Y$ extends uniquely to an embedding $\ff{Y'}\to\ff Y$, whose image is the division subring of $\ff Y$ generated by $Y'$. If $Y=\bigcup_iY_i$ is a directed union, then, after these identifications, $\ff Y=\bigcup_i\ff{Y_i}$.
-\end{lemma}
-
-\begin{proof}
-The inclusion has the retraction $\free Y\to\free{Y'}$ which sends the elements of $Y\setminus Y'$ to $0$, so it is honest by Lemma~\ref{lem:retract} and extends to an embedding by (F3). Its image is a division subring containing $Y'$, and it is generated by $Y'$ because $\ff{Y'}$ is generated by $Y'$ (Lemma~\ref{lem:generated}). For the last claim, $\bigcup_i\ff{Y_i}$ is a division subring of $\ff Y$ (the union is directed) containing $Y$, hence is all of $\ff Y$.
-\end{proof}
-
-Henceforth we regard $\ff{Y'}$ as a division subring of $\ff Y$ whenever $Y'\subseteq Y$.
 
 \begin{proposition}[endomorphisms and derivations prescribed on generators]\label{prop:extend}
-Let $Y$ be a set, $s\colon Y\to Y$ an injective map and $d\colon Y\to\ff Y$ an arbitrary map. Then there is exactly one pair $(\sigma,\delta)$ consisting of an endomorphism $\sigma$ of $\ff Y$ and a $\sigma$-derivation $\delta$ of $\ff Y$ such that
+Let $s\colon Y\to Y$ be an injective map and $d\colon Y\to\ff Y$ an arbitrary map. There are an endomorphism $\sigma$ of $\ff Y$ and a $\sigma$-derivation $\delta$ of $\ff Y$ with
 \[
 \sigma(y)=s(y),\qquad\delta(y)=d(y)\qquad(y\in Y).
 \]
-Moreover, if $Y'\subseteq Y$ satisfies $s(Y')\subseteq Y'$ and $d(Y')\subseteq\ff{Y'}$, then $\sigma(\ff{Y'})\subseteq\ff{Y'}$ and $\delta(\ff{Y'})\subseteq\ff{Y'}$, and the restrictions of $\sigma,\delta$ to $\ff{Y'}$ are the pair determined by $(Y',s|_{Y'},d|_{Y'})$.
+Moreover, if $\hat s$ denotes the $k$-algebra endomorphism of $S$ induced by $s$, then $\sigma\lambda=\lambda\hat s$.
 \end{proposition}
 
 \begin{proof}
-Write $U=\ff Y$ and $S=\free Y$.
+Write $U=\ff Y$.
 
-\emph{Step 1: the endomorphism $\hat s$ of $S$ induced by $s$ is honest.} $\hat s$ maps $S$ isomorphically onto the subalgebra $\free{s(Y)}$, and $\free{s(Y)}\subseteq S$ has the retraction $r\colon S\to\free{s(Y)}$ sending the generators outside $s(Y)$ to $0$. Then $\rho=\hat s^{-1}\circ r$ (with $\hat s^{-1}\colon\free{s(Y)}\to S$ the inverse of the isomorphism) satisfies $\rho\circ\hat s=\id_S$, so $\hat s$ is honest by Lemma~\ref{lem:retract}. Consequently, for every full matrix $A$ over $S$, the matrix $\hat s(A)$ is full, hence invertible over $U$ by (F2).
+\emph{Step 1: $\lambda\hat s$ is fully inverting.} Since $s$ is injective, there is a $k$-algebra endomorphism $\rho$ of $S$ with $\rho(s(y))=y$ for $y\in Y$ and $\rho(y')=0$ for $y'\in Y\setminus s(Y)$. Then $\rho\hat s$ is the identity on $Y$, hence on $S$, and Lemma~\ref{lem:honest} applies.
 
-\emph{Step 2: a homomorphism into $\M_2(U)$.} Since $S$ is free and $k$ is central in $U$, there is a unique $k$-algebra homomorphism $\theta\colon S\to\M_2(U)$ with
+\emph{Step 2: a homomorphism into triangular matrices.} Let $\UT(U)$ be the ring of upper triangular $2\times2$ matrices over $U$; it is a $k$-algebra since $k$ is central in $U$, and the two diagonal entries $\pi_1,\pi_2\colon\UT(U)\to U$ are ring homomorphisms. Let $\theta\colon S\to\UT(U)$ be the $k$-algebra homomorphism with
 \[
-\theta(y)=\begin{pmatrix} s(y)& d(y)\\ 0& y\end{pmatrix}\qquad(y\in Y).
+\theta(y)=\begin{pmatrix}s(y)&d(y)\\0&y\end{pmatrix}\qquad(y\in Y).
 \]
-The set of $a\in S$ for which $\theta(a)$ is upper triangular with diagonal $(\hat s(a),a)$ is a $k$-subalgebra containing $Y$, so $\theta(a)=\begin{pmatrix}\hat s(a)&D(a)\\0&a\end{pmatrix}$ for all $a\in S$ and suitable $D(a)\in U$. For a $p\times p$ matrix $A$ over $S$, the matrix $\theta(A)\in\M_p(\M_2(U))$ is, after the obvious permutation of rows and columns, the block matrix $\begin{pmatrix}\hat s(A)&D(A)\\0&A\end{pmatrix}\in\M_{2p}(U)$. If $A$ is full then both diagonal blocks are invertible over $U$ (Step 1 and (F2)), hence so is $\theta(A)$. Thus $\theta$ is fully inverting and by (F2) factors uniquely as $\theta=\theta_U\circ\lambda$ with a ring homomorphism $\theta_U\colon U\to\M_2(U)$.
+Then $\pi_1\theta=\lambda\hat s$ and $\pi_2\theta=\lambda$, since both sides are $k$-algebra homomorphisms $S\to U$ that agree on $Y$.
 
-\emph{Step 3: reading off $\sigma$ and $\delta$.} Let $V$ be the set of $u\in U$ for which $\theta_U(u)$ is upper triangular with $(2,2)$-entry $u$. Products and sums of such matrices are again of this form, so $V$ is a subring of $U$, and $V\supseteq S$. If $0\ne u\in V$, say $\theta_U(u)=\begin{pmatrix}a&b\\0&u\end{pmatrix}$, then this matrix is invertible in $\M_2(U)$ (its inverse is $\theta_U(u^{-1})$), which forces $a\ne0$ (otherwise the row vector $(1,-bu^{-1})$ would annihilate it from the left); and then $\theta_U(u^{-1})=\begin{pmatrix}a^{-1}&-a^{-1}bu^{-1}\\0&u^{-1}\end{pmatrix}$, so $u^{-1}\in V$. Hence $V$ is a division subring containing $S$, and $V=U$ by Lemma~\ref{lem:generated}. Write
+\emph{Step 3: $\theta$ is fully inverting.} Let $A=(a_{ij})$ be a full $p\times p$ matrix over $S$. The matrix $\theta(A)\in\M_p(\UT(U))$ has entries $\theta(a_{ij})=\left(\begin{smallmatrix}\hat s(a_{ij})&q_{ij}\\0&a_{ij}\end{smallmatrix}\right)$ for certain $q_{ij}\in U$. Regard it as a $2p\times2p$ matrix over $U$ whose rows and columns are indexed by pairs $(i,\epsilon)$ with $1\le i\le p$ and $\epsilon\in\{1,2\}$, and reorder the rows and columns so that those with $\epsilon=1$ come first. This reordering is an isomorphism of $\M_p(\M_2(U))$ onto $\M_{2p}(U)$ which maps $\M_p(\UT(U))$ onto the ring of block upper triangular matrices with $p\times p$ blocks, and it sends $\theta(A)$ to
 \[
-\theta_U(u)=\begin{pmatrix}\sigma(u)&\delta(u)\\0&u\end{pmatrix}\qquad(u\in U).
+\begin{pmatrix}\lambda\hat s(A)&Q\\0&\lambda(A)\end{pmatrix},\qquad Q=(q_{ij}).
 \]
-That $\theta_U$ is a ring homomorphism says exactly that $\sigma$ is a ring endomorphism of $U$ and $\delta$ is a $\sigma$-derivation (\cite[\S2.1, (8)--(9)]{CohSF}; the same device is used in \cite[Theorem~7.5.17]{CohFIR} for ordinary derivations of Sylvester domains). By construction $\sigma(y)=s(y)$ and $\delta(y)=d(y)$ for $y\in Y$.
+The diagonal blocks are invertible over $U$: $\lambda(A)$ because $\lambda$ is fully inverting, and $\lambda\hat s(A)$ by Step~1. Hence this block matrix is invertible, with inverse
+\[
+\begin{pmatrix}\lambda\hat s(A)^{-1}&-\lambda\hat s(A)^{-1}Q\lambda(A)^{-1}\\0&\lambda(A)^{-1}\end{pmatrix},
+\]
+which is again block upper triangular. So $\theta(A)$ is invertible in $\M_p(\UT(U))$, and $\theta$ is fully inverting. By Theorem~\ref{thm:cohn}, $\theta=\Theta\lambda$ for a ring homomorphism $\Theta\colon U\to\UT(U)$.
 
-\emph{Uniqueness.} If $(\sigma',\delta')$ is another such pair, the equalizer of $\sigma$ and $\sigma'$ is a division subring of $U$ containing $Y$, hence equals $U$; and then the equalizer of $\delta$ and $\delta'$ is a division subring containing $Y$, hence equals $U$.
-
-\emph{Restriction.} Let $U'=\ff{Y'}\subseteq U$ and $W=\{u\in U:\sigma(u)\in U',\ \delta(u)\in U'\}$. By the Leibniz rule and the formula for $\delta(u^{-1})$, $W$ is a division subring of $U$; it contains $Y'$ because $s(Y')\subseteq Y'\subseteq U'$ and $d(Y')\subseteq U'$. Hence $W\supseteq U'$, so $U'$ is stable under $\sigma$ and $\delta$. The restrictions are an endomorphism and a $\sigma$-derivation of $U'$ with the prescribed values on $Y'$, so they coincide with the pair determined by $(Y',s|_{Y'},d|_{Y'})$ by the uniqueness just proved, applied to $Y'$.
+\emph{Step 4: reading off $\sigma$ and $\delta$.} The homomorphism $\pi_2\Theta\colon U\to U$ satisfies $\pi_2\Theta\lambda=\pi_2\theta=\lambda$, so $\pi_2\Theta=\id_U$ by Lemma~\ref{lem:rigid}. We may therefore write
+\[
+\Theta(u)=\begin{pmatrix}\sigma(u)&\delta(u)\\0&u\end{pmatrix}\qquad(u\in U)
+\]
+for maps $\sigma,\delta\colon U\to U$. That $\Theta$ is additive says that $\sigma$ and $\delta$ are additive; that $\Theta(1)$ is the identity matrix says that $\sigma(1)=1$ and $\delta(1)=0$; and comparing the entries of $\Theta(uv)=\Theta(u)\Theta(v)$ gives
+\[
+\sigma(uv)=\sigma(u)\sigma(v),\qquad\delta(uv)=\sigma(u)\delta(v)+\delta(u)v .
+\]
+So $\sigma$ is an endomorphism of $U$ and $\delta$ is a $\sigma$-derivation (this is the standard description of twisted derivations by triangular matrices, \cite[\S2.1]{CohSF}). Finally, $\Theta\lambda=\theta$ gives $\sigma(y)=s(y)$ and $\delta(y)=d(y)$ for $y\in Y$, and $\sigma\lambda=\pi_1\Theta\lambda=\pi_1\theta=\lambda\hat s$.
 \end{proof}
 
+The argument is that of \cite[Theorem~7.5.17]{CohFIR}, which extends ordinary derivations to universal fields of fractions, with a twist by $\sigma$ inserted.
+
 \begin{lemma}[non-surjectivity]\label{lem:nonsurj}
-In the situation of Proposition~\ref{prop:extend}, let $y_0\in Y\setminus s(Y)$. Then $y_0\notin\sigma(\ff Y)$.
+In the situation of Proposition~\ref{prop:extend}, let $y_0\in Y\setminus s(Y)$. Then $y_0\notin\sigma(\ff Y)$. In particular $\sigma$ is not surjective.
 \end{lemma}
 
 \begin{proof}
-Let $\tau_0$ be the $k$-algebra automorphism of $\free Y$ with $\tau_0(y_0)=y_0+1$ and $\tau_0(y)=y$ for $y\ne y_0$. Being an isomorphism, $\tau_0$ is honest (Lemma~\ref{lem:retract}), so it extends to an endomorphism $\tau$ of $U=\ff Y$ by (F3). The fixed set $\Fix(\tau)=\{u:\tau(u)=u\}$ is a division subring of $U$ containing $Y\setminus\{y_0\}\supseteq s(Y)$, hence containing the division subring $D$ generated by $s(Y)$. Now $\sigma(U)\subseteq D$, because $\{u\in U:\sigma(u)\in D\}$ is a division subring containing $Y$. So $\tau$ is the identity on $\sigma(U)$, while $\tau(y_0)=y_0+1\ne y_0$. Hence $y_0\notin\sigma(U)$.
+Write $U=\ff Y$. Let $\hat\tau$ be the $k$-algebra automorphism of $S$ with $\hat\tau(y_0)=y_0+1$ and $\hat\tau(y)=y$ for $y\ne y_0$. Its inverse is a left inverse, so $\lambda\hat\tau$ is fully inverting by Lemma~\ref{lem:honest}, and it factors as $\tau\lambda$ for an endomorphism $\tau$ of $U$. Since $y_0\notin s(Y)$, the endomorphism $\hat\tau$ fixes every element of $s(Y)$, so $\hat\tau\hat s=\hat s$. Hence
+\[
+\tau\sigma\lambda=\tau\lambda\hat s=\lambda\hat\tau\hat s=\lambda\hat s=\sigma\lambda,
+\]
+and $\tau\sigma=\sigma$ by Lemma~\ref{lem:rigid}. Thus $\tau$ fixes $\sigma(U)$ pointwise, whereas $\tau(y_0)=y_0+1\ne y_0$. So $y_0\notin\sigma(U)$.
 \end{proof}
 
 \begin{remark}
-Cohn uses precisely this set-up in \cite[\S5.9]{CohSF} and \cite[\S5]{Coh77}: a free algebra on generators indexed by $\Lambda\times\N^2$, an endomorphism shifting one index (which has a retraction and is therefore honest), a derivation shifting the other index, both extended to the free field. In \cite{Coh77} the non-surjectivity of the extended endomorphism is stated to be clear; Lemma~\ref{lem:nonsurj} supplies the argument.
+Cohn uses precisely this set-up in \cite[\S5]{Coh77} and \cite[\S5.9]{CohSF}: a free algebra on generators indexed by $\Lambda\times\N^2$, an endomorphism shifting one index (which has a left inverse and therefore preserves full matrices) and a derivation shifting the other, both extended to the free field. In \cite{Coh77} the non-surjectivity of the extended endomorphism is stated to be clear; Lemma~\ref{lem:nonsurj} supplies the argument.
 \end{remark}
-
-\section{Adjoining the solution of one equation}\label{sec:adjoin}
-
-Throughout this section $K$ is a division ring with an endomorphism $\sigma$ and a $\sigma$-derivation $\delta$, and $C\in\M_n(K)$ is a fixed matrix. Let $A\supseteq K$ be a ring with an endomorphism and a $\sigma$-derivation extending those of $K$, which we again denote by $\sigma,\delta$; for row vectors and matrices over $A$ we apply $\sigma,\delta$ entrywise, and we put $T(v)=\sigma(v)C+\delta(v)$ for $v\in A^n$.
-
-\begin{lemma}\label{lem:fixedstep}
-Let $v\in A^n$ with $\sigma(v)=v$ and let $N\in\M_n(K)$. Then
-\[
-T(vN)=v\bigl(\sigma(N)C+\delta(N)\bigr)+\delta(v)N .
-\]
-\end{lemma}
-
-\begin{proof}
-Entrywise, $\sigma(vN)=\sigma(v)\sigma(N)=v\sigma(N)$ and $\delta(vN)=\sigma(v)\delta(N)+\delta(v)N=v\delta(N)+\delta(v)N$, by the Leibniz rule applied to each entry $\sum_l v_lN_{lj}$. Add.
-\end{proof}
-
-Define matrices $N_{i,j}\in\M_n(K)$ for $0\le j\le i$ by $N_{0,0}=I$ and
-\[
-N_{i+1,j}=\sigma(N_{i,j})C+\delta(N_{i,j})+N_{i,j-1}\qquad(0\le j\le i+1),
-\]
-with the conventions $N_{i,-1}=0$ and $N_{i,i+1}=0$. Thus $N_{i,i}=I$ for all $i$, and the $N_{i,j}$ depend only on $C$ and on $\sigma,\delta$ restricted to $K$.
-
-\begin{lemma}\label{lem:iterate}
-Let $m\ge1$ and let $x_0,\dots,x_{m-1}\in A^n$ satisfy $\sigma(x_j)=x_j$ for $0\le j\le m-1$ and $\delta(x_j)=x_{j+1}$ for $0\le j\le m-2$. Put $x_m=\delta(x_{m-1})$. Then for $0\le i\le m$,
-\[
-T^i(x_0)=\sum_{j=0}^{i}x_jN_{i,j}.
-\]
-\end{lemma}
-
-\begin{proof}
-Induction on $i$, the case $i=0$ being trivial. For $i<m$, every $x_j$ with $j\le i$ is fixed by $\sigma$ and satisfies $\delta(x_j)=x_{j+1}$ (for $j=m-1$ by definition of $x_m$), so Lemma~\ref{lem:fixedstep} gives
-\[
-T^{i+1}(x_0)=\sum_{j\le i}T(x_jN_{i,j})=\sum_{j\le i}x_j\bigl(\sigma(N_{i,j})C+\delta(N_{i,j})\bigr)+\sum_{j\le i}x_{j+1}N_{i,j}=\sum_{j\le i+1}x_jN_{i+1,j}.\qedhere
-\]
-\end{proof}
-
-\begin{proposition}\label{prop:adjoin}
-Let $Y$ be a set, $s\colon Y\to Y$ injective, $d\colon Y\to\ff Y$ a map, and let $K=\ff Y$ with the pair $(\sigma,\delta)$ of Proposition~\ref{prop:extend}. Let $f\in K[t;\sigma,\delta]$ be monic of degree $n\ge1$, let $C=C_f$, let $g=\sum_{i=0}^mg_it^i$ with $m\ge1$ and $g_m\ne0$, and let $e\in K^n$. Let $X=\{x_{l,j}:1\le l\le n,\ 0\le j\le m-1\}$ be a set of $nm$ new symbols, $Y'=Y\sqcup X$ and $K'=\ff{Y'}\supseteq K$. Write $x_j=(x_{1,j},\dots,x_{n,j})\in K'^n$ and define, in $K'^n$,
-\[
-\Phi=\sum_{i=0}^{m}g_i\sum_{j=0}^{\min(i,m-1)}x_jN_{i,j},\qquad \zeta=g_m^{-1}(e-\Phi),
-\]
-where the $N_{i,j}\in\M_n(K)$ are the matrices defined above. Extend $s$ to $s'\colon Y'\to Y'$ by $s'(x)=x$ for $x\in X$, and $d$ to $d'\colon Y'\to K'$ by
-\[
-d'(x_{l,j})=x_{l,j+1}\ (0\le j\le m-2),\qquad d'(x_{l,m-1})=\zeta_l ,
-\]
-and let $(\sigma',\delta')$ be the pair on $K'$ given by Proposition~\ref{prop:extend} for $(Y',s',d')$. Then $\sigma',\delta'$ restrict to $\sigma,\delta$ on $K$, and, computing $T_f$ in $K'$ with $\sigma',\delta'$,
-\[
-g(T_f)(x_0)=e .
-\]
-\end{proposition}
-
-\begin{proof}
-$Y\subseteq Y'$ is stable under $s'$ and $d'(Y)=d(Y)\subseteq\ff Y$, so the restriction statement is the last part of Proposition~\ref{prop:extend}. Hence $K'$ is a ring as in the standing assumptions of this section, with $A=K'$, and the matrices $N_{i,j}$ computed in $K$ are the ones appearing in Lemma~\ref{lem:iterate}. The vectors $x_0,\dots,x_{m-1}$ satisfy the hypotheses of Lemma~\ref{lem:iterate}, since $s'$ fixes $X$ and $d'(x_{l,j})=x_{l,j+1}$ for $j\le m-2$; and $x_m=\delta'(x_{m-1})=\zeta$. Therefore
-\[
-g(T_f)(x_0)=\sum_{i=0}^{m}g_i\sum_{j=0}^{i}x_jN_{i,j}=g_m\,x_mN_{m,m}+\Phi=g_m\zeta+\Phi=e .\qedhere
-\]
-\end{proof}
-
-Note that $\zeta$ is an explicit element of $K'^n$ defined before $\sigma'$ and $\delta'$ are introduced; there is no circularity. The only role of the generators $x_{l,j}$ with $j\ge1$ is to serve as the values of $\delta'$ on the previous ones, so that the equation $g(T_f)(x_0)=e$ involves exactly one unknown quantity, $\delta'(x_{m-1})$, and that quantity is solved for.
 
 \section{The construction}\label{sec:construction}
 
 \begin{construction}\label{constr}
-Let $k$ be a commutative field. We define recursively sets $Y_i$ with injective maps $s_i\colon Y_i\to Y_i$ and maps $d_i\colon Y_i\to\ff{Y_i}$, such that $Y_i\subseteq Y_{i+1}$, $s_{i+1}|_{Y_i}=s_i$ and $d_{i+1}|_{Y_i}=d_i$. We write $K_i=\ff{Y_i}$ with the pair $(\sigma_i,\delta_i)$ given by Proposition~\ref{prop:extend}, and $R_i=K_i[t;\sigma_i,\delta_i]$.
-\begin{itemize}
-\item $Y_0=\{y_j:j\in\N\}$, $s_0(y_j)=y_{j+1}$, $d_0=0$.
-\item Given $(Y_i,s_i,d_i)$, let $\T_i$ be the set of all triples $(f,g,e)$ with $f\in R_i$ monic of degree $n\ge1$, $g\in R_i$ of degree $\ge1$ and $e\in K_i^n$. For each $\tau=(f,g,e)\in\T_i$, with $n=\deg f$ and $m=\deg g$, choose a set $X_\tau$ of $nm$ new symbols $x^\tau_{l,j}$, the sets $X_\tau$ being pairwise disjoint and disjoint from $Y_i$. Put $Y_{i+1}=Y_i\sqcup\bigsqcup_{\tau\in\T_i}X_\tau$. Let $s_{i+1}$ be $s_i$ on $Y_i$ and the identity on each $X_\tau$. Let $d_{i+1}$ be $d_i$ on $Y_i$, and on $X_\tau$ let it be the map $d'$ of Proposition~\ref{prop:adjoin} for the data $(Y_i,s_i,d_i)$ and $(f,g,e)$; its values lie in $\ff{Y_i\sqcup X_\tau}\subseteq\ff{Y_{i+1}}$.
-\end{itemize}
-Finally let $Y=\bigcup_iY_i$, $s=\bigcup_is_i\colon Y\to Y$, $d=\bigcup_id_i\colon Y\to\ff Y$ (using $\ff{Y_i}\subseteq\ff Y$), and let $\Kt=\ff Y$ with the pair $(\st,\dt)$ of Proposition~\ref{prop:extend}. The map $s$ is injective because each $s_i$ is injective and any two elements of $Y$ lie in a common $Y_i$.
+Let $k$ be a countable commutative field. Let $Z$ be a countably infinite set, let
+\[
+Y=\{y_i:i\in\N\}\sqcup Z,
+\]
+and let $K=\ff Y$ be the free field on $Y$ over $k$; it is countable by Lemma~\ref{lem:generated}. Let $s\colon Y\to Y$ be the map with $s(y_i)=y_{i+1}$ and $s(z)=z$ for $z\in Z$. It is injective, and $y_0\notin s(Y)$.
+
+A \emph{task} is a triple $\tau=(f,g,e)$ with
+\[
+f=(f_0,\dots,f_{n-1})\in K^n,\qquad g=(g_0,\dots,g_{m-1})\in K^m,\qquad e\in K^n,
+\]
+where $n,m\ge1$. We think of $f$ and $g$ as the coefficient lists of the monic polynomials $t^n+\sum_{i<n}f_it^i$ and $t^m+\sum_{j<m}g_jt^j$, and of $e$ as a right-hand side; but note that a task is defined in terms of $K$ alone, before $\sigma$ and $\delta$ have been chosen. Likewise the companion matrix $C_f\in\M_n(K)$ depends only on the list $f$. The set $\T$ of all tasks is countable, since $K$ is.
+
+Because $\T$ is countable and $Z$ is infinite, we may choose, for each task $\tau=(f,g,e)$ with $f\in K^n$ and $g\in K^m$, a subset
+\[
+X_\tau=\{x^\tau_{l,j}:1\le l\le n,\ 0\le j\le m-1\}\subseteq Z
+\]
+of $nm$ elements, in such a way that the sets $X_\tau$ ($\tau\in\T$) are pairwise disjoint. For each $\tau$ and $0\le j\le m-1$ let $x^\tau_j=(x^\tau_{1,j},\dots,x^\tau_{n,j})\in K^n$ be the vector of generators in the $j$th column of $X_\tau$.
+
+Define $d\colon Y\to K$ as follows. On $\{y_i\}$ and on $Z\setminus\bigcup_\tau X_\tau$ let $d=0$. On $X_\tau$, for $\tau=(f,g,e)$, writing $x_j=x^\tau_j$ and $C=C_f$, let $d$ be given in vector form by
+\begin{equation}\label{eq:d}
+d(x_j)=x_{j+1}-x_jC\quad(0\le j\le m-2),\qquad d(x_{m-1})=e-\sum_{j=0}^{m-1}g_jx_j-x_{m-1}C ;
+\end{equation}
+that is, $d(x^\tau_{l,j})$ is the $l$th coordinate of the right-hand side. These are elements of $K$, and since the sets $X_\tau$ are disjoint, $d$ is well defined.
+
+Finally, let $(\sigma,\delta)$ be an endomorphism and a $\sigma$-derivation of $K$ with $\sigma(y)=s(y)$ and $\delta(y)=d(y)$ for $y\in Y$, as provided by Proposition~\ref{prop:extend}, and let $R=K[t;\sigma,\delta]$.
 \end{construction}
 
 \begin{proof}[Proof of Theorem~\ref{thm:target}]
-We show that $\Kt,\st,\dt$ have the required properties.
+We show that $K$, $\sigma$, $\delta$ of Construction~\ref{constr} have the required properties. $K$ is countable, and $\sigma$ is not surjective by Lemma~\ref{lem:nonsurj}, applied to $y_0\notin s(Y)$.
 
-\emph{Compatibility.} For each $i$, the subset $Y_i\subseteq Y$ is stable under $s$ and $d(Y_i)\subseteq\ff{Y_i}=K_i$, so by Proposition~\ref{prop:extend} the subring $K_i\subseteq\Kt$ is stable under $\st,\dt$, and $(\st,\dt)$ restricts to $(\sigma_i,\delta_i)$ on $K_i$. Likewise $(\sigma_{i+1},\delta_{i+1})$ restricts to $(\sigma_i,\delta_i)$ on $K_i\subseteq K_{i+1}$, and for $\tau\in\T_i$ the pair $(\sigma_{i+1},\delta_{i+1})$ restricts on $\ff{Y_i\sqcup X_\tau}$ to the pair $(\sigma',\delta')$ of Proposition~\ref{prop:adjoin}, since $Y_i\sqcup X_\tau$ is stable under $s_{i+1}$ and $d_{i+1}$ maps it into $\ff{Y_i\sqcup X_\tau}$. Consequently $R_i$ is a subring of $\Rt=\Kt[t;\st,\dt]$, and for $f\in R_i$ monic the operator $T_f$ on $K_i^n$ is the restriction of the operator $T_f$ on $\Kt^n$. By Lemma~\ref{lem:subset}, $\Kt=\bigcup_iK_i$.
-
-\emph{Solvability.} Let $f\in\Rt$ be monic of degree $n\ge1$, $g\in\Rt$ of degree $m\ge1$ and $e\in\Kt^n$. The finitely many coefficients of $f$, $g$ and $e$ lie in some $K_i$, so $\tau=(f,g,e)\in\T_i$. By Proposition~\ref{prop:adjoin}, applied inside $\ff{Y_i\sqcup X_\tau}\subseteq K_{i+1}\subseteq\Kt$, the vector $v=x^\tau_0=(x^\tau_{1,0},\dots,x^\tau_{n,0})$ satisfies $g(T_f)(v)=e$, and by compatibility this identity holds in $\Kt^n$.
-
-\emph{Non-surjectivity.} $y_0\notin s(Y)$, since $s(Y_0)=\{y_j:j\ge1\}$ and $s$ fixes every generator outside $Y_0$. By Lemma~\ref{lem:nonsurj}, $y_0\notin\st(\Kt)$.
-
-\emph{Countability.} Suppose $k$ is countable. $Y_0$ is countable. If $Y_i$ is countable then so are $K_i$ (Lemma~\ref{lem:generated}), $R_i$, $K_i^n$ and $\T_i$, and each $X_\tau$ is finite, so $Y_{i+1}$ is countable. Hence $Y$ and $\Kt$ are countable.
+Now let $f,g\in R$ be monic of degrees $n,m\ge1$ and let $e\in K^n$; we must find $v\in K^n$ with $g(T_f)(v)=e$. Let $\tau=(f,g,e)\in\T$ be the task formed by the coefficient lists of $f$ and $g$ and by $e$, and write $x_j=x^\tau_j$ and $C=C_f$. The coordinates of each $x_j$ lie in $Z$, so they are fixed by $\sigma$, and $\delta$ acts on them by $d$. Hence
+\[
+T_f(x_j)=\sigma(x_j)C+\delta(x_j)=x_jC+d(x_j)\qquad(0\le j\le m-1),
+\]
+and by \eqref{eq:d},
+\[
+T_f(x_j)=x_{j+1}\quad(0\le j\le m-2),\qquad T_f(x_{m-1})=e-\sum_{j=0}^{m-1}g_jx_j .
+\]
+By induction, $T_f^{\,j}(x_0)=x_j$ for $0\le j\le m-1$, and then $T_f^{\,m}(x_0)=T_f(x_{m-1})=e-\sum_{j<m}g_jx_j$. Since $g$ is monic of degree $m$,
+\[
+g(T_f)(x_0)=\sum_{j=0}^{m-1}g_j\,T_f^{\,j}(x_0)+T_f^{\,m}(x_0)=\sum_{j=0}^{m-1}g_jx_j+\Bigl(e-\sum_{j=0}^{m-1}g_jx_j\Bigr)=e .
+\]
+So $v=x_0$ solves the equation.
 \end{proof}
 
-\begin{remark}[a variant with a fixed set of symbols]\label{rem:fixed}
-It is convenient, for instance when the construction is to be carried out formally, to fix the symbols in advance instead of creating the sets $X_\tau$ stage by stage. Take $Y=Y_0\sqcup(\N\times\N)$ with $s$ the shift on $Y_0$ and the identity on $\N\times\N$, let $U=\ff Y$, and let $Y_i=Y_0\sqcup(\{0,\dots,i-1\}\times\N)$. Define maps $d_i\colon Y\to U$ recursively, with $d_i=0$ outside $Y_i$ and $d_{i+1}=d_i$ on $Y_i$: given $d_i$, let $(\sigma_i,\delta_i)$ be the pair on all of $U$ determined by $(s,d_i)$ (Proposition~\ref{prop:extend}), let $K_i$ be the division subring generated by $Y_i$, which is stable under $\sigma_i,\delta_i$ by the restriction clause, and enumerate the (countably many) triples $(f,g,e)$ over $K_i$ by natural numbers $c$; the symbols $(i,\langle c,l,j\rangle)$, with $\langle\cdot\rangle$ a pairing function, play the role of $x^\tau_{l,j}$, and $d_{i+1}$ is defined on them by the recipe of Proposition~\ref{prop:adjoin}, computed with $\sigma_i,\delta_i$; on symbols $(i,c')$ not of this form put $d_{i+1}(i,c')=0$. Finally $d=\bigcup_id_i$ and $(\st,\dt)$ is the pair determined by $(s,d)$. Since $d_j$ and $d$ agree on $Y_i$ for $j\ge i$, the pairs $(\sigma_j,\delta_j)$ and $(\st,\dt)$ all agree on $K_i$ by the uniqueness part of Proposition~\ref{prop:extend}, and the matrices $N_{i,j}$ of Proposition~\ref{prop:adjoin}, whose entries lie in $K_i$, are the same whether computed with $(\sigma_i,\delta_i)$ or with $(\st,\dt)$. The proof of Theorem~\ref{thm:target} then goes through verbatim; the unused symbols are extra free generators fixed by $\st$ and killed by $\dt$, and do no harm. This variant avoids the identifications of Lemma~\ref{lem:subset} between the fields $\ff{Y_i}$, at the cost of an enumeration.
-\end{remark}
+This completes the proof of the Main Theorem.
 
-\begin{proof}[Proof of the Main Theorem]
-Let $k$ be countable and let $\Kt,\st,\dt$ be as in Theorem~\ref{thm:target}; then $\Rt=\Kt[t;\st,\dt]$ is countable. By Proposition~\ref{prop:criterion}, $\Rt$ is a simple principal left ideal domain and a left PCI domain, hence a left V-domain (by Lemma~\ref{lem:pciv}, or by \cite[Theorem~3.2]{JLL09}); in particular it is left Noetherian and left hereditary. By Proposition~\ref{prop:notore}, with $c=y_0\notin\st(\Kt)$, $\Rt$ is not right Ore and $t\Rt\cap y_0t\Rt=0$; so by Lemma~\ref{lem:countable} no simple right $\Rt$-module is injective, $\Rt$ is not a right V-ring, and by Lemma~\ref{lem:pciv} ($\Rt$ is a domain and not a division ring, as $t$ is not a unit) it is not a right PCI ring. (That $\Rt$ is not right PCI also follows, without countability, from Proposition~\ref{prop:notore} and \cite[6.17]{CF75}.) The statements about $\Rt^{\op}$ are the mirror images; that a right PCI domain is simple, right Noetherian and right hereditary is \cite{Fai73} and \cite[Theorem~1]{Dam79}.
-\end{proof}
-
-\begin{corollary}\label{cor:answers}
-Let $\Rt$ be as in the Main Theorem.
-\begin{enumerate}
-\item A right PCI ring need not be left PCI \textup{(}\cite{Fai73}, \cite[\S7, (10)]{CF75}, \cite{Dam79}\textup{)}: $\Rt^{\op}$.
-\item A right PCI domain need not be left Ore, and a right V-domain need not be left Ore \textup{(}\cite[\S7, (7)]{CF75}\textup{)}: $\Rt^{\op}$.
-\item A left V-domain need not be a right V-domain \textup{(}\cite[\S7, (10)]{CF75}, \cite[\S1]{JLL09}, \cite[Remark~2.8]{BDV18}\textup{)}: $\Rt$.
-\item There is an Ore extension $K[t;\sigma,\delta]$ which is a left V-domain with $\sigma$ not onto \textup{(}\cite[\S6]{JLL09}\textup{)}: $\Rt$.
-\end{enumerate}
-\end{corollary}
-
-\section{Remarks}
+\section{Remarks}\label{sec:remarks}
 
 \begin{remark}[on the shape of the construction]
-Three features of the construction are forced.
+Two features of the construction are forced.
 \begin{enumerate}
-\item The derivation cannot be omitted or made inner. If $\delta=0$ then $Rt$ is a proper two-sided ideal of $K[t;\sigma]$ (as $tR\subseteq Rt$), so the ring is not simple. If $\delta$ is inner, $\delta(a)=ca-\sigma(a)c$, the substitution $t'=t-c$ gives $K[t;\sigma,\delta]=K[t';\sigma]$. In particular $K$ cannot be commutative when $\sigma\ne\id$, since then every $\sigma$-derivation is inner \cite[\S2]{Coh77}.
-\item The adjoined solutions must be free over $K$. If a solution $x$ of $g(T_f)(x)=e_1$ satisfied a relation $xa=\omega(a)x$ ($a\in K$) with $\omega$ an endomorphism of $K$, applying $\delta$ and comparing coefficients would force $\sigma\circ\omega$ to be inner, which is impossible for non-surjective $\sigma$. This is why the extension is a free field rather than an Ore or a crossed-product extension.
-\item The closure has to be iterated: the data $(f,g)$ range over polynomials whose coefficients are elements of the field being built, and the values $\zeta$ of the derivation on the new generators involve $\sigma$ and $\delta$ applied to those coefficients.
+\item The derivation cannot be omitted or made inner. If $\delta=0$, then $tR\subseteq Rt$ and $Rt$ is a proper two-sided ideal of $K[t;\sigma]$, so the ring is not simple. If $\delta$ is inner, $\delta(a)=ca-\sigma(a)c$ for some $c\in K$, then the substitution $t'=t-c$ gives $K[t;\sigma,\delta]=K[t';\sigma]$. In particular $K$ cannot be commutative: if $K$ is commutative and $\sigma\ne\id$, every $\sigma$-derivation is inner, because for $b$ with $\sigma(b)\ne b$ the identity $\delta(ab)=\delta(ba)$ yields $\delta(a)=c(a-\sigma(a))$ with $c=\delta(b)(b-\sigma(b))^{-1}$ \cite[\S2]{Coh77}.
+\item The solutions of the equations $g(T_f)(v)=e$ have to be adjoined as free generators. What makes the construction work is that on the free field the values of $\sigma$ and $\delta$ on the generators are subject to no constraints whatsoever (Proposition~\ref{prop:extend}); an Ore extension or a crossed product of $K$ would impose commutation relations between the new elements and $K$ which $\delta$ would have to respect.
 \end{enumerate}
-By contrast, the following are matters of convenience: taking the new generators to be fixed by $\sigma$ (which makes the computation of $g(T_f)$ a two-line induction and requires only $nm$ generators per equation), solving for every right-hand side $e$ rather than only for $e_1$ (which is all the criterion $R=Rf+gR$ of \cite[Theorem~3.2]{JLL09} asks for, while every $e$ is what the Baer-criterion argument after Proposition~\ref{prop:criterion} uses), and choosing $\ff{Y_0}$ with the shift as the starting field.
+By contrast, the choice to fix the new generators under $\sigma$, and to prescribe $T_f$ rather than $\delta$ on them, is a matter of convenience, but a decisive one. If one prescribes $\delta(x_j)=x_{j+1}$ directly, one finds $T_f^{\,i}(x_0)=\sum_{j\le i}x_jN_{i,j}$ for matrices $N_{i,j}$ built from $\sigma$ and $\delta$ applied to the coefficients of $f$, so the required value of $\delta$ on the last generator depends on $\sigma$ and $\delta$, and one is led to build $K$ as the union of a tower of free fields, each solving the equations of the previous one, with the attendant compatibility checks. Prescribing $T_f(x_j)$ makes the required values of $d$ depend only on the coefficients of $f$, $g$ and $e$, so that a single free field suffices.
+\end{remark}
+
+\begin{remark}[uncountable $k$]
+For an arbitrary commutative field $k$, take $|Z|=\max(|k|,\aleph_0)$ in Construction~\ref{constr}. Then $|K|=|Z|$ by Lemma~\ref{lem:generated}, so $|\T|=|Z|$ and the sets $X_\tau$ can still be chosen, and the proof of Theorem~\ref{thm:target} goes through unchanged. One obtains a left PCI domain $K[t;\sigma,\delta]$ which is not right Ore, hence not right PCI by \cite[6.17]{CF75}. Only the failure of the right V-property was derived from countability.
 \end{remark}
 
 \begin{remark}[on the literature used]
-Apart from the results on Ore extensions and PCI rings quoted in Section~\ref{sec:ore}, the proof uses from Cohn's theory only Facts~\ref{facts}: free algebras are firs, semifirs have universal fields of fractions with the universal property of a localization, and honest maps extend to them. Lemma~\ref{lem:generated}, Lemma~\ref{lem:retract} and Proposition~\ref{prop:extend} are proved from these. The extension of a derivation to a universal field of fractions (Proposition~\ref{prop:extend}, Steps~2--3) is the argument of \cite[Theorem~7.5.17]{CohFIR}, with a twist by $\sigma$ inserted. No coproduct theorems are needed.
+Apart from Baer's criterion and the elementary theory of Ore extensions, the proof uses from the literature only Theorem~\ref{thm:cohn}: the free algebra has a universal field of fractions with the universal property of a localization. Lemmas~\ref{lem:rigid}--\ref{lem:honest}, Proposition~\ref{prop:extend} and Lemma~\ref{lem:nonsurj} are derived from it. In particular, Cohn's theorem that honest homomorphisms between semifirs extend to their universal fields of fractions \cite[Theorem~4.5.10]{CohSF} is not needed: the extensions used here are obtained directly from the universal property, and the identifications between free fields on different sets of generators that a tower would require do not arise.
 \end{remark}
 
-\begin{remark}[further properties of $\Rt$]
-By \cite[Theorem~6.2]{JLL09}, the maximal right quotient ring of the left V-domain $\Rt$ is directly infinite, and by \cite[Proposition~6.1]{JLL09} no cyclic right module $\Rt/f\Rt$ with $f\ne0$ is injective and every principal right ideal of $\Rt$ is closed. The proof of Lemma~\ref{lem:countable} shows more: every non-zero injective right $\Rt$-module $E$ satisfies $|E|^{\aleph_0}\le|E|$, hence $|E|\ge2^{\aleph_0}$. If $k$ is uncountable one still obtains, by Theorem~\ref{thm:target}, a left PCI domain $\Kt[t;\st,\dt]$ which is not right Ore and hence not right PCI; only the failure of the right V-property was derived from countability.
+\begin{remark}[further properties of $R$]
+By \cite[Theorem~6.2]{JLL09}, the maximal right quotient ring of the left V-domain $R$ is directly infinite, and by \cite[Proposition~6.1]{JLL09} no cyclic right module $R/fR$ with $f\ne0$ is injective and every principal right ideal of $R$ is closed. The proof of Lemma~\ref{lem:countable} shows more than was used: every non-zero injective right $R$-module $E$ satisfies $|E|^{\aleph_0}\le|E|$, hence $|E|\ge2^{\aleph_0}$.
 \end{remark}
 
 \begin{thebibliography}{JLL09}

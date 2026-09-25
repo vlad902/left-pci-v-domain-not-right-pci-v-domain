@@ -18,9 +18,10 @@ project:
 
     The ring is an Ore extension K[t; σ, δ] over a free field K (Cohn's universal
     field of fractions of a free algebra over the rationals) with a non-surjective
-    endomorphism σ, built by iteratively adjoining free solutions of the
-    pseudo-linear equations that govern divisibility of the cyclic modules
-    R/Rf.
+    endomorphism σ. The endomorphism and the derivation are prescribed on the
+    free generators of K so that every pseudo-linear equation governing
+    divisibility of the cyclic modules R/Rf is solved by a vector of free
+    generators.
     
     The mathematics, the accompanying paper and the Lean code were produced by AI
     models (Anthropic's Claude) at a human's direction; no human expert has checked
@@ -59,10 +60,10 @@ sources:
     relationship: other
     note: >-
       The accompanying informal write-up, included in this repository snapshot.
-      The Lean development follows its Sections 2–5 and cites its numbering
-      (Theorem 1.1, Proposition 2.2, Lemma 2.4, Theorem 2.5, Proposition 3.6,
-      Remark 5.2, Corollary 5.3). No human has reviewed it. It has not been
-      published elsewhere.
+      The Lean development follows its Sections 2–4 and cites its numbering
+      (Theorem 1.1, Proposition 2.2, Lemma 2.4, Theorem 2.5, Corollary 2.6,
+      Theorem 3.1, Proposition 3.5, Construction 4.1). No human has reviewed
+      it. It has not been published elsewhere.
     license: "Apache-2.0 (part of this repository)"
     author_endorsement: "n/a"
   - title: "Simple Noetherian Rings"
@@ -103,7 +104,7 @@ sources:
       Theorem 1 (a right PCI ring is right Noetherian), used in the proof of the
       Main Theorem for the properties of the opposite ring; the paper also
       restates the question whether a right PCI ring is left PCI, cited in
-      Corollary 5.3 (1).
+      Corollary 2.6 (1).
   - title: "Ore extensions and V-domains"
     authors:
       - "S. K. Jain"
@@ -114,10 +115,11 @@ sources:
     id: "https://doi.org/10.1090/conm/480/09378"
     relationship: background
     note: >-
-      Theorem 3.2 (criterion R = Rf + gR for Ore extensions to be left V / left
-      PCI), Proposition 6.1 and Theorem 6.2; §1 restates the V-domain question
-      as open, and Remark 6.3 notes that no left V-domain K[t; σ, δ] with σ not
-      onto was known.
+      §4 (the identification of R/Rf with the pseudo-linear space (Kⁿ, T_f),
+      Lemma 4.3), Proposition 6.1, Theorem 6.2 (a left V-domain K[t; σ, δ] is
+      right PCI iff σ is onto); §1 restates the V-domain question as open, and
+      Remark 6.3 notes that no left V-domain K[t; σ, δ] with σ not onto was
+      known.
   - title: "Rings over which certain modules are injective"
     authors:
       - "A. K. Boyle"
@@ -161,8 +163,8 @@ sources:
     relationship: background
     note: >-
       Universal fields of fractions of semifirs, full matrices and honest maps
-      (Chapter 4), and firs and free fields (§5.4); the source of Facts 3.1, which are proved in this
-      repository rather than assumed.
+      (Chapter 4), and firs and free fields (§5.4); the source of Theorem 3.1,
+      which is proved in this repository rather than assumed.
   - title: "Free Ideal Rings and Localization in General Rings"
     authors:
       - "P. M. Cohn"
@@ -172,8 +174,9 @@ sources:
     relationship: background
     note: >-
       The weak algorithm and firs (Chapter 2), universal localization and the
-      display construction (Chapter 7), followed by the Lean proofs of Facts 3.1
-      in LeftPCI.FreeAlgebra and LeftPCI.FreeField.
+      display construction (Chapter 7), followed by the Lean proofs of
+      Theorem 3.1 in LeftPCI.FreeAlgebra and LeftPCI.FreeField; Theorem 7.5.17
+      is the triangular-matrix argument of Proposition 3.5.
   - title: "A construction of simple principal right ideal domains"
     authors:
       - "P. M. Cohn"
@@ -181,7 +184,7 @@ sources:
     location: "Proc. Amer. Math. Soc. 66 (1977), 217–222"
     id: "https://doi.org/10.1090/S0002-9939-1977-0453805-2"
     relationship: background
-    note: "The free-field device for extending an endomorphism and a derivation from generators (§5), used in Proposition 3.6."
+    note: "The free-field device for extending an endomorphism and a derivation from generators (§5), used in Proposition 3.5."
   - title: "A countable self-injective ring is quasi-Frobenius"
     authors:
       - "J. Lawrence"
@@ -226,7 +229,7 @@ status:
     are proved in the library LeftPCI and checked by Comparator.
     Not among the compared statements: the Main Theorem's further claims that
     the ring is simple, a principal left ideal domain, left Noetherian and left
-    hereditary; and Corollary 5.3 (2) and (4) as separate statements (they are
+    hereditary; and Corollary 2.6 (2) and (4) as separate statements (they are
     visible in the Main Theorem's statement and in the construction).
   sorry_count: 0
   sorry_in_definitions: 0
@@ -249,8 +252,11 @@ automation:
         route through free K-rings and a direct limit of fields; none of that
         code is in this repository. The construction was simplified, the paper
         paper/pci_counterexample.tex was written from scratch, the paper was
-        formalized section by section (Sections 2–5), and the development was
-        ported into this standalone repository.
+        formalized section by section, and the development was ported into
+        this standalone repository. Afterwards the tower of free fields was
+        replaced by a one-step construction (prescribing T_f rather than δ on
+        σ-fixed generators, so that all equations are solved over a single free
+        field).
       cost:
         wall_time: >-
           about 4 hours of Claude Code session time.
@@ -287,15 +293,17 @@ fidelity:
     takes k = ℚ, which suffices for the compared statements. Not compared: the
     Main Theorem's claims that the ring is simple, a principal left ideal
     domain, left Noetherian and left hereditary. Proposition 2.2 is formalized
-    through the Baer-criterion argument given after it (solving for every
-    right-hand side) rather than via Jain–Lam–Leroy Theorem 3.2. "Not right PCI"
-    is derived via Lemma 2.6 and Lemma 2.4 (countability) rather than via
-    Cozzens–Faith 6.17; Lemma 2.4 is proved on the left and applied to Rᵐᵒᵖ.
-    The tower of Construction 5.1 is formalized in the fixed-symbol variant of
-    Remark 5.2, as the paper describes. Cohn's Facts 3.1 are proved in the
-    repository (LeftPCI.FreeAlgebra, LeftPCI.FreeField), not assumed; the Ore
-    extension K[t; σ, δ] is built in the repository (LeftPCI.OrePoly), since
-    Mathlib has only the case δ = 0. Of Corollary 5.3, items (1) and (3) are
+    as in the paper, through Baer's criterion (every proper cyclic left module
+    is divisible); its "left V" step is stated for an arbitrary ring that is
+    not a division ring. "Not right PCI" and "not right V" are both derived
+    from Lemma 2.4 (countability), as in the paper, without Cozzens–Faith 6.17;
+    Lemma 2.4 is proved on the left and applied to Rᵐᵒᵖ. Construction 4.1 is
+    formalized with Z = ℕ, the tasks (f, g, e) coded by an injection into ℕ and
+    the generators indexed through a pairing function. Cohn's Theorem 3.1 is
+    proved in the repository (LeftPCI.FreeAlgebra, LeftPCI.FreeField), not
+    assumed; the Ore extension K[t; σ, δ] is built in the repository
+    (LeftPCI.OrePoly), since Mathlib has only the case δ = 0. Of
+    Corollary 2.6, items (1) and (3) are
     compared theorems; item (1) is stated for the Main Theorem's ring itself (a
     left PCI ring need not be right PCI), the paper's statement about the
     opposite ring read through Rᵐᵒᵖ, so both compared corollaries use the same
@@ -328,15 +336,15 @@ alignment:
         right Ore, not right PCI and not right V (parts (1) and (2) of the Main
         Theorem, without simplicity, the principal-left-ideal property, left
         Noetherianity and left heredity).
-    - source: "Corollary 5.3 (1) of paper/pci_counterexample.tex"
+    - source: "Corollary 2.6 (1) of paper/pci_counterexample.tex"
       lean: "LeftPCI.not_forall_isLeftPCIRing_imp_isRightPCIRing"
       module: "Challenge"
       status: "proved"
       note: >-
         Stated for the Main Theorem's ring itself: a left PCI ring need not be
-        right PCI. The paper's Corollary 5.3 (1), that a right PCI ring need not
+        right PCI. The paper's Corollary 2.6 (1), that a right PCI ring need not
         be left PCI, is the same statement for the opposite ring.
-    - source: "Corollary 5.3 (3) of paper/pci_counterexample.tex"
+    - source: "Corollary 2.6 (3) of paper/pci_counterexample.tex"
       lean: "LeftPCI.not_forall_isLeftVRing_imp_isRightVRing"
       module: "Challenge"
       status: "proved"

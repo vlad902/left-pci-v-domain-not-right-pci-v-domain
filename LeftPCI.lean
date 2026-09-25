@@ -7,7 +7,7 @@ public import LeftPCI.Counterexample.Defs
 public import LeftPCI.Counterexample.FreeFieldExt
 public import LeftPCI.Counterexample.OreExtension
 public import LeftPCI.Counterexample.PCIToV
-public import LeftPCI.Counterexample.Tower
+public import LeftPCI.Counterexample.Direct
 public import LeftPCI.FreeAlgebra.Fir
 public import LeftPCI.FreeAlgebra.WeakAlgorithm
 public import LeftPCI.FreeAlgebra.Words

@@ -1,6 +1,6 @@
 module
 
-public import LeftPCI.Counterexample.Defs
+public import LeftPCI.Counterexample.PCIToV
 public import Mathlib.Algebra.Module.Injective
 public import Mathlib.LinearAlgebra.LinearIndependent.Defs
 public import Mathlib.SetTheory.Cardinal.Continuum
@@ -157,6 +157,12 @@ theorem not_isLeftVRing_of_countable [IsDomain R] [Countable R] {a b : R} (hb : 
   have : Nontrivial (R ⧸ M) := Submodule.Quotient.nontrivial_iff.mpr hM.ne_top
   have : Countable (R ⧸ M) := Quotient.countable
   exact not_injective_of_countable hb h (R ⧸ M) (hV (R ⧸ M) hS)
+
+/-- Nor is it a left PCI ring: `R` is not simple as a module, since `b` is not a unit. -/
+theorem not_isLeftPCIRing_of_countable [IsDomain R] [Countable R] {a b : R} (hb : b ≠ 0)
+    (h : LeftIndep a b) : ¬ IsLeftPCIRing R := fun hP =>
+  not_isLeftVRing_of_countable hb h <| isLeftVRing_of_isLeftPCIRing R ⟨b, hb, fun hu =>
+    one_ne_zero (h 1 (a * ↑hu.unit⁻¹) (by rw [one_mul, mul_assoc, hu.val_inv_mul, mul_one]))⟩ hP
 
 end Counterexample
 

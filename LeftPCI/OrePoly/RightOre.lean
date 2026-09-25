@@ -11,7 +11,8 @@ namespace LeftPCI
 
 If `σ` is not surjective and `c ∉ σ(K)`, then `t R ∩ (c t) R = 0` in `R = K[t; σ, δ]`
 (`X_mul_ne_C_mul_X_mul`; the degree computation in the proof of Proposition 2.3 of the paper
-`paper/pci_counterexample.tex`, and Jain–Lam–Leroy, Proposition 6.1).
+`paper/pci_counterexample.tex`, which is also the computation in the proof of
+Jain–Lam–Leroy, Proposition 6.1 (1)).
 -/
 
 namespace OrePoly
